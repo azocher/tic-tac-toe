@@ -1,3 +1,44 @@
-h1 {
-  color: purple;
+body {
+  text-align: center;
+  margin: 10 auto;
+  width: 1000px;
+}
+
+.playerBox {
+  background: fuchsia;
+  border: 2px solid black;
+  height: 50px;
+}
+div {
+
+}
+
+.grid {
+  margin: 50px;
+  display: inline-flex;
+  height: 912px;
+  width: 912px;
+  background-color: lightgray;
+  border: 5px solid black;
+}
+
+.cells {
+  height: 300px;
+  width: 300px;
+  border: 2px solid black;
+}
+.column1 {
+  background-color: gold;
+  justify-content: space-evenly;
+}
+.column2 {
+  background-color: rgb(255, 0, 0);
+  justify-content: space-evenly;
+}
+.column3 {
+  background-color: rgb(17, 0, 255);
+  justify-content: space-evenly;
+}
+.outcome {
+  background-color: green;
 }
