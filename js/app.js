@@ -55,14 +55,40 @@ document.addEventListener('DOMContentLoaded', function(){
    }
 
    function squareClick(e) {
-       if (activeGame && e.target.id){ // clicking on the margins between squares triggers an event that lacks a square id
+       // verify that a game is active, that the player hasn't clicked the margin between squares, and that the square is empty
+       if ((activeGame && e.target.id) && !e.target.children[0].innerHTML){ 
            console.log(`Square ${e.target.id} has been clicked!`);
            e.target.children[0].innerHTML = currentTurn;
            advanceTurn();
+           checkForWin();
+           pruneWinConditions();
        }
     }
 
+    function checkForWin(){
+        console.log("in CheckForWin");
+        if (turnCount >= 5){ //turn 5 is the earliest anyone can win
+            console.log("It's turn " + turnCount + ", continuing with win check");
+            for (let i = 0; i < remainingWinConditions.length; i++){ //iterate through every remaining winnable stripe
+                let thisStripe = [];
+                for (let j = 0; j < remainingWinConditions[i].length; j++){ // make a list of all the values in that stripe
+                    thisStripe.push(gameSpace.children[remainingWinConditions[i][j]].children[0].innerHTML);
+                    if (j === 2){
+                        console.log("Done with a stripe: " + JSON.stringify(thisStripe));
+                        if (thisStripe[0] === "X" || thisStripe[0] === "O"){ // if all values are the same and are not blank
+                            if ((thisStripe[0] === thisStripe[1]) && thisStripe[0] === thisStripe[2]){ 
+                                console.log("Ending game with a win for " + thisStripe[0]);
+                                endGame(thisStripe[0]); // end the game, player holding this stripe wins.
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     function advanceTurn(){
+        console.log("In advanceTurn");
         turnCount++;
         if (currentTurn === "X"){
             currentTurn = "O";
@@ -71,5 +97,64 @@ document.addEventListener('DOMContentLoaded', function(){
             currentTurn = "X";
             messageBox.innerHTML = "Current turn: Player X";
         }
+    }
+    //check whether each winning stripe has both Xs and Os.  If so, remove it from the list of possible win conditions.
+    function pruneWinConditions(){
+        //console.log("In Prune Function");
+        for (i = 0; i < remainingWinConditions.length; i++){
+            let hasX = false;
+            let hasO = false;
+            let thisRow = [];
+            if (remainingWinConditions[i]){
+                //console.log(JSON.stringify(remainingWinConditions));
+                for (j = 0; j < remainingWinConditions[i].length; j++){
+                    let thisSquareValue = gameSpace.children[remainingWinConditions[i][j]].children[0].innerHTML;
+                    switch (thisSquareValue){
+                        case "X":
+                            hasX = true;
+                            break;
+                        case "O":
+                            hasO = true;
+                    }
+                    thisRow.push(thisSquareValue);
+                    if (j === 2){ // if it's evaluated an entire triplet
+                       // console.log("Row " + remainingWinConditions[i] + " has values " + thisRow);
+                        if (hasX && hasO){
+                            let removedStripe = remainingWinConditions.splice(i, 1);
+                            //console.log("removed " + removedStripe);
+                            i--;
+                            break;
+                        }
+                    }
+
+                }
+            }                    
+            if (remainingWinConditions.length === 0){
+                break;
+            }
+        }
+        checkForTies();
+    }
+
+    function checkForTies(){
+        // if all possible winning stripes currently have an X and an O, end the game in a tie.
+        if (remainingWinConditions.length < 1){
+            console.log("Game should end");
+            endGame("tie");
+        } 
+        // this function does not currently look forward to see if a win is still possible, only backward.
+    }
+
+    function endGame(result){
+        console.log("In endGame with result = " + result);
+        if (result === "tie"){
+            console.log("Game really should be over");
+            messageBox.innerHTML = "It's a tie!  Neither player can win.";
+        } else {
+            console.log("Game should be over");
+            messageBox.innerHTML = "WTF";
+            messageBox.innerHTML = `Player ${result} wins!  Congratulations!`;
+        }
+        activeGame = false;
     }
 })
