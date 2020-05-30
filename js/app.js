@@ -2,11 +2,16 @@ document.addEventListener('DOMContentLoaded', function(){
     console.log("in js file!");
 
     // get DOM refs
-   const gameSpace = document.querySelector('.gameSpace');
-   const resetButton = document.getElementById('reset');
-   const undoButton = document.getElementById('undo');
-   const messageBox = document.getElementById('message');
-   const squares = [];
+   const gameSpace = document.querySelector(".gameSpace");
+   const resetButton = document.getElementById("reset");
+   const undoButton = document.getElementById("undo");
+   const messageBox = document.getElementById("message");
+   const nameInputs = {};
+   nameInputs.X = document.getElementById("nameX");
+   nameInputs.O = document.getElementById("nameO");
+   const computerPlayerCheckboxes = {};
+   computerPlayerCheckboxes.X = document.getElementById("computerX");
+   computerPlayerCheckboxes.O = document.getElementById("computerO");
 
    // initialize game globals
    const WIN_CONDITIONS_MASTER = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0 ,4, 8], [6, 4, 2]];
@@ -15,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function(){
    let currentTurn = ""; // marks which player's turn it is
    let turnCount = null; // marks the number of the current turn
    let moveHistory = [];
+   let playerNames = {
+       X: "",
+       O: ""
+   }
 
 
    // event listeners
@@ -24,6 +33,21 @@ document.addEventListener('DOMContentLoaded', function(){
    for (let i = 0; i < squareCount; i++){
        let thisSquare = gameSpace.children[i];
        thisSquare.addEventListener("click", squareClick);
+   }
+   computerPlayerCheckboxes.X.addEventListener("click", toggleComputerPlayer);
+   computerPlayerCheckboxes.O.addEventListener("click", toggleComputerPlayer);
+
+   // if the user checks a computer-player checkbox, give that player the name of "Computer"
+   function toggleComputerPlayer(e){
+       console.log(e);
+       let relevantTextBox = nameInputs[e.target.value];
+       if (e.target.checked){
+           relevantTextBox.value = "Computer"
+           relevantTextBox.disabled = true;
+       } else {
+           relevantTextBox.value = "";
+           relevantTextBox.disabled = false;
+       }
    }
 
    function init(){
@@ -37,7 +61,11 @@ document.addEventListener('DOMContentLoaded', function(){
     for (square of gameSpace.children){
         square.children[0].innerHTML = "";
     }
-    messageBox.innerHTML = "Current turn: Player X"
+    playerNames.X = nameInputs.X.value;
+    nameInputs.X.disabled = true;
+    playerNames.O = nameInputs.O.value;
+    nameInputs.O.disabled = true;
+    messageBox.innerHTML = `Current turn: ${playerNames.X}`
     currentTurn = "X";
     moveHistory = [];
     turnCount = 1;
@@ -92,10 +120,10 @@ document.addEventListener('DOMContentLoaded', function(){
         turnCount++;
         if (currentTurn === "X"){
             currentTurn = "O";
-            messageBox.innerHTML = "Current turn: Player O";
+            messageBox.innerHTML = `Current turn: ${playerNames.O}`;
         } else {
             currentTurn = "X";
-            messageBox.innerHTML = "Current turn: Player X";
+            messageBox.innerHTML = `Current turn: ${playerNames.X}`;
         }
     }
     //check whether each winning stripe has both Xs and Os.  If so, remove it from the list of possible win conditions.
@@ -153,8 +181,10 @@ document.addEventListener('DOMContentLoaded', function(){
         } else {
             console.log("Game should be over");
             messageBox.innerHTML = "WTF";
-            messageBox.innerHTML = `Player ${result} wins!  Congratulations!`;
+            messageBox.innerHTML = `${playerNames[result]} wins!  Congratulations!`;
         }
         activeGame = false;
+        nameInputs.X.disabled = false;
+        nameInputs.O.disabled = false;
     }
 })
