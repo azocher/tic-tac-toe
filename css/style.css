@@ -2,6 +2,14 @@
   color: purple;
 }
 
+div {
+  vertical-align: top;
+}
+
+span {
+  padding: 3px;
+}
+
 .gameSpace {
   display: inline-block;
   height: 90px;
@@ -14,4 +22,5 @@
   height: 23px;
   width: 23px;
   border: 1px solid black;
+  font-size: 1.5em;
 }

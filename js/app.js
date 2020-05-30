@@ -6,30 +6,50 @@ document.addEventListener('DOMContentLoaded', function(){
    const resetButton = document.getElementById('reset');
    const undoButton = document.getElementById('undo');
    const messageBox = document.getElementById('message');
-   const boxes = [];
+   const squares = [];
 
-   // initialize game constants
+   // initialize game globals
    const WIN_CONDITIONS_MASTER = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0 ,4, 8], [6, 4, 2]];
+   let activeGame = false;
 
    // event listeners
    resetButton.addEventListener("click", reset);
    undoButton.addEventListener("click", undo);
-   let boxCount = gameSpace.children.length;
-   for (let i = 0; i < boxCount; i++){
-       let thisBox = gameSpace.children[i];
-       thisBox.addEventListener("click", boxClick);
+   let squareCount = gameSpace.children.length;
+   for (let i = 0; i < squareCount; i++){
+       let thisSquare = gameSpace.children[i];
+       thisSquare.addEventListener("click", squareClick);
    }
+
+   function init(){
+    console.log("in init");
+    //repopulate win conditions.  Lines that receive a mix of Xs and Os as the game gets played will be spliced from this copy
+    let remaining_win_conditions = [];
+    for (condition of WIN_CONDITIONS_MASTER){
+        remaining_win_conditions.push(condition);
+    }
+    //clear all board values (for game reset)
+    for (square of gameSpace.children){
+        square.children[0].innerHTML = "";
+    }
+    messageBox.innerHTML = "Current turn: Player X"
+    activeGame = true;
+}
 
    // stub out event listener functions
    function reset() {
        console.log("Reset button clicked!");
+       init();
    }
 
    function undo() {
        console.log("Undo button clicked!");
    }
 
-   function boxClick(e) {
-       console.log(`Box ${e.target.id} has been clicked!`);
-   }
+   function squareClick(e) {
+       if (activeGame && e.target.id){ // clicking on the margins between squares triggers an event that lacks a square id
+           console.log(e);
+           console.log(`Square ${e.target.id} has been clicked!`);
+       }
+    }
 })
