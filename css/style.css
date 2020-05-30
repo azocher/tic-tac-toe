@@ -1,3 +1,17 @@
-h1 {
+ h1 {
   color: purple;
+}
+
+.gameSpace {
+  display: inline-block;
+  height: 90px;
+  width: 90px;
+}
+
+.square {
+  margin: 0;
+  display: inline-block;
+  height: 23px;
+  width: 23px;
+  border: 1px solid black;
 }
