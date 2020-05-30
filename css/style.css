@@ -4,6 +4,11 @@ body {
   color: black;
 }
 
+#displayTurn {
+  font-size: 24px;
+  margin: 10px;
+}
+
 .container {
   width: 300px;
   height: 320px;
@@ -19,3 +24,13 @@ body {
   float: left;
 } 
 
+.turnX {
+  background-image: url("../img/X.png");
+  background-size: cover;
+}
+
+.turnO {
+  background-image: url("../img/O-Icon.png");
+  background-size: cover;
+
+}
