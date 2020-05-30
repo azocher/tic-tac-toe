@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function(){
     //clear all board values (for game reset)
     for (square of gameSpace.children){
         square.children[0].innerHTML = "";
+        square.classList.remove("red");
     }
     playerNames.X = (nameInputs.X.value || "Player X");
     nameInputs.X.disabled = true;
@@ -108,6 +109,9 @@ document.addEventListener('DOMContentLoaded', function(){
                         if (thisStripe[0] === "X" || thisStripe[0] === "O"){ // if all values are the same and are not blank
                             if ((thisStripe[0] === thisStripe[1]) && thisStripe[0] === thisStripe[2]){ 
                                 console.log("Ending game with a win for " + thisStripe[0]);
+                                for (let k = 0; k < 3; k++){ // color the winning streak
+                                    gameSpace.children[remainingWinConditions[i][k]].classList.add("red");
+                                }
                                 endGame(thisStripe[0]); // end the game, player holding this stripe wins.
                             }
                         }
@@ -128,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function(){
             messageBox.innerHTML = `Current turn: ${playerNames.X}`;
         }
         if (playerNames[currentTurn] === "Computer"){
-            takeComputerTurn();
+            setTimeout(takeComputerTurn, 1250);
         }
     }
 
