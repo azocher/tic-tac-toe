@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function(){
    const computerPlayerCheckboxes = {};
    computerPlayerCheckboxes.X = document.getElementById("computerX");
    computerPlayerCheckboxes.O = document.getElementById("computerO");
+   const smartAI = document.getElementById("smartAI");
+   const winTable = document.querySelector(".winsOverTime");
 
    // initialize game globals
    const WIN_CONDITIONS_MASTER = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0 ,4, 8], [6, 4, 2]];
@@ -222,14 +224,61 @@ document.addEventListener('DOMContentLoaded', function(){
         // this function does not currently look forward to see if a win is still possible, only backward.
     }
 
+    function updateWinTable(result){
+        winTable.style.display = "block";
+        for (thisPlayer in playerNames){ //run this once for each player
+            let playerFound = false;
+            for (row of winTable.rows){ // go through each table row
+                if (row.cells[0].innerText === playerNames[thisPlayer]){ //if this row is for this player
+                    playerFound = true;
+                    console.log("Result: " + JSON.stringify(result));
+                    console.log("thisPlayer: " + JSON.stringify(thisPlayer));
+                    switch (result){
+                        case ("tie"):
+                            row.cells[2].innerText++;
+                            break;
+                        case (thisPlayer):
+                            console.log("Adding winner to wintable.  result: " + result + ", thisPlayer: " + thisPlayer);
+                            row.cells[1].innerText++;
+                            break;
+                        default:
+                            console.log("Adding loser to wintable.  result: " + result + ", thisPlayer: " + thisPlayer);
+                            row.cells[3].innerText++;
+                    }
+                }
+            }
+            if (playerFound === false){
+                let newRow = winTable.insertRow(1);
+                for (let i = 0; i < 4; i++){
+                    newRow.insertCell();
+                }
+                console.log(newRow);
+                newRow.cells[0].innerText = playerNames[thisPlayer];
+                newRow.cells[1].innerText = 0;
+                newRow.cells[2].innerText = 0;
+                newRow.cells[3].innerText = 0;
+                switch (result){
+                    case ("tie"):
+                        newRow.cells[2].innerText++;
+                        break;
+                    case (thisPlayer):
+                        newRow.cells[1].innerText++;
+                        break;
+                    default:
+                        newRow.cells[3].innerText++;
+                }
+            }
+        }
+    }
+
     function endGame(result){
+        updateWinTable(result);
         console.log("In endGame with result = " + result);
         if (result === "tie"){
             console.log("Game really should be over");
             messageBox.innerHTML = "It's a tie!  Neither player can win.";
         } else {
             console.log("Game should be over");
-            messageBox.innerHTML = "WTF";
             messageBox.innerHTML = `${playerNames[result]} wins!  Congratulations!`;
         }
         activeGame = false;

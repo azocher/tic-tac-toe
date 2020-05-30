@@ -18,7 +18,10 @@
     <input type="text" id="nameO" placeholder = "Name">
     <input type="checkbox" id="computerO" value="O">Computer Player
   </div>
-  <div class="gameSpace">
+  <div>
+    <input type="checkbox" id="smartAI" disabled>Use smarter computer AI
+  </div>
+    <div class="gameSpace">
       <div class="square" id="square0"><span></span></div><!--
       --><div class="square" id="square1"><span></span></div><!--
       --><div class="square" id="square2"><span></span></div><!--
@@ -30,9 +33,19 @@
       --><div class="square" id="square8"><span></span></div>
   </div>
   <p id="message"></p>
-  <p><span placeholder="OMG"></span></p>
+
   <button id="reset">Start New Game</button>
   <button id="undo" disabled>Undo Last Move</button>
+  <table class="winsOverTime" >
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Wins</th>
+        <th>Ties</th>
+        <th>Losses</th>
+      </tr>
+    </thead>
+  </table>
   <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
