@@ -61,9 +61,9 @@ document.addEventListener('DOMContentLoaded', function(){
     for (square of gameSpace.children){
         square.children[0].innerHTML = "";
     }
-    playerNames.X = nameInputs.X.value;
+    playerNames.X = (nameInputs.X.value || "Player X");
     nameInputs.X.disabled = true;
-    playerNames.O = nameInputs.O.value;
+    playerNames.O = (nameInputs.O.value || "Player O");
     nameInputs.O.disabled = true;
     messageBox.innerHTML = `Current turn: ${playerNames.X}`
     currentTurn = "X";
@@ -82,14 +82,16 @@ document.addEventListener('DOMContentLoaded', function(){
        console.log("Undo button clicked!");
    }
 
-   function squareClick(e) {
+   function squareClick(e, computerChoice) {
        // verify that a game is active, that the player hasn't clicked the margin between squares, and that the square is empty
-       if ((activeGame && e.target.id) && !e.target.children[0].innerHTML){ 
-           console.log(`Square ${e.target.id} has been clicked!`);
-           e.target.children[0].innerHTML = currentTurn;
-           advanceTurn();
-           checkForWin();
-           pruneWinConditions();
+       if (e && activeGame){
+           if (e.target.id && !e.target.children[0].innerHTML){ 
+               console.log(`Square ${e.target.id} has been clicked!`);
+               e.target.children[0].innerHTML = currentTurn;
+               advanceTurn();
+               checkForWin();
+               pruneWinConditions();
+           }
        }
     }
 
@@ -125,7 +127,26 @@ document.addEventListener('DOMContentLoaded', function(){
             currentTurn = "X";
             messageBox.innerHTML = `Current turn: ${playerNames.X}`;
         }
+        if (playerNames[currentTurn] === "Computer"){
+            takeComputerTurn();
+        }
     }
+
+    //find which squares are available to play, and pick a random one
+    function takeComputerTurn(){
+        let availableSquares = [];
+        for (thisSquare of gameSpace.children){
+            if (!thisSquare.children[0].innerHTML){  // if this square has no XO entry, add it to available squares
+                console.log(thisSquare);
+                availableSquares.push(thisSquare);
+            }
+        }
+        if (availableSquares.length > 0){
+            let pickedSquareIndex = Math.floor(Math.random()*availableSquares.length);
+            squareClick({target: availableSquares[pickedSquareIndex]});
+        }
+    }
+
     //check whether each winning stripe has both Xs and Os.  If so, remove it from the list of possible win conditions.
     function pruneWinConditions(){
         //console.log("In Prune Function");
