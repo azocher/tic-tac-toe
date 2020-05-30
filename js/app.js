@@ -70,6 +70,8 @@ document.addEventListener('DOMContentLoaded', function(){
         for (square of gameSpace.children){
             square.children[0].innerHTML = "";
             square.classList.remove("red");
+            square.classList.remove("X");
+            square.classList.remove("O");
         }
         playerNames.X = (nameInputs.X.value || "Player X");
         nameInputs.X.disabled = true;
@@ -95,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 console.log(`Square ${e.target.id} has been clicked!`);
                 squareHoverNoMore(e);
                 e.target.children[0].innerHTML = currentTurn;
+                e.target.classList.add(`${currentTurn}`);
                 advanceTurn();
                 checkForWin();
                 pruneWinConditions();
