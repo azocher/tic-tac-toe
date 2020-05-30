@@ -1,5 +1,5 @@
  h1 {
-  color: purple;
+  color: #774777;
 }
 
 div {
@@ -27,4 +27,8 @@ span {
 
 .red {
   background-color: red;
+}
+
+.hover {
+  box-shadow: 2px 2px 2px #774777;
 }

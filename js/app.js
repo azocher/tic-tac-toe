@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', function(){
    for (let i = 0; i < squareCount; i++){
        let thisSquare = gameSpace.children[i];
        thisSquare.addEventListener("click", squareClick);
+       thisSquare.addEventListener("mouseover", squareHover);
+       thisSquare.addEventListener("mouseleave", squareHoverNoMore);
    }
    computerPlayerCheckboxes.X.addEventListener("click", toggleComputerPlayer);
    computerPlayerCheckboxes.O.addEventListener("click", toggleComputerPlayer);
@@ -71,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function(){
     moveHistory = [];
     turnCount = 1;
     activeGame = true;
+    if (playerNames.X === "Computer"){
+        setTimeout(takeComputerTurn, 750);
+    }
 }
 
    // stub out event listener functions
@@ -85,15 +90,34 @@ document.addEventListener('DOMContentLoaded', function(){
 
    function squareClick(e, computerChoice) {
        // verify that a game is active, that the player hasn't clicked the margin between squares, and that the square is empty
-       if (e && activeGame){
+       if (activeGame){
            if (e.target.id && !e.target.children[0].innerHTML){ 
                console.log(`Square ${e.target.id} has been clicked!`);
+               squareHoverNoMore(e);
                e.target.children[0].innerHTML = currentTurn;
                advanceTurn();
                checkForWin();
                pruneWinConditions();
            }
        }
+    }
+
+    function squareHover(e){
+        // make an X or O appear in a cell before click happens, just for fun and as a reminder of whose turn it is
+        console.log("in squareHover");
+        if (activeGame){
+            if (e.target.id && !e.target.children[0].innerHTML){
+                e.target.classList.add("hover");
+            }
+        }
+    }
+
+    function squareHoverNoMore(e){
+        if (activeGame){
+            if (e.target.id && !e.target.children[0].innerHTML){
+                e.target.classList.remove("hover");
+            }
+        }
     }
 
     function checkForWin(){
@@ -132,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function(){
             messageBox.innerHTML = `Current turn: ${playerNames.X}`;
         }
         if (playerNames[currentTurn] === "Computer"){
-            setTimeout(takeComputerTurn, 1250);
+            setTimeout(takeComputerTurn, 1000);
         }
     }
 
