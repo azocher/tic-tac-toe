@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 }
                 if (threat && !moveMade){
                     squareClick({target: threat});
+                    moveMade = true;
                 } // intentionally no break!  If there is no smart action to take, go ahead and take a random naive one.
                 if (moveMade){
                     break;
