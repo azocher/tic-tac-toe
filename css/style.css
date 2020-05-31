@@ -8,9 +8,8 @@ body {
   background: fuchsia;
   border: 2px solid black;
   height: 50px;
-}
-div {
-
+  color: black;
+  font-size: 30px;
 }
 
 .grid {
@@ -26,17 +25,19 @@ div {
   height: 300px;
   width: 300px;
   border: 2px solid black;
+  color: black;
+  font-size: 30px;
 }
 .column1 {
-  background-color: gold;
+  background-color: blue;
   justify-content: space-evenly;
 }
 .column2 {
-  background-color: rgb(255, 0, 0);
+  background-color: blue;
   justify-content: space-evenly;
 }
 .column3 {
-  background-color: rgb(17, 0, 255);
+  background-color: blue;
   justify-content: space-evenly;
 }
 .outcome {
