@@ -3,13 +3,13 @@ main {
   padding: 0;
 }
 
-div {
+/* div {
   width:150px;
   height: 150px;
   display: inline-block;
   font: 50px;
   text-align: center;
-}
+} */
 
 #intro {
   padding: 20px;
@@ -20,40 +20,20 @@ h1 {
   color: purple;
 }
 
-#topLeft {
-  border-right: 1px solid;
-  border-bottom: 1px solid;
+.gameFace {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: rgb(65, 3, 165);
+  padding: 10px;
+  width: 750px;
+  height: 300px;
 }
 
-#topMid {
-  border-right: 1px solid;
-  /* border-left: 1px solid; */
-  border-bottom: 1px solid;
+.moveSpace {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.954);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
 }
 
-#topRight {
-  border-bottom: 1px solid;
-}
-
-#midLeft {
-  border-right: 1px solid;
-  border-bottom: 1px solid;
-}
-
-#center {
-  border-right: 1px solid;
-  /* border-left: 1px solid; */
-  border-bottom: 1px solid;
-}
-
-#midRight {
-  border-bottom: 1px solid;
-}
-
-#bottomLeft {
-  border-right: 1px solid;
-}
-
-#bottomMid {
-  border-right: 1px solid;
-}
