@@ -1,3 +1,59 @@
+main {
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  width:150px;
+  height: 150px;
+  display: inline-block;
+  font: 50px;
+  text-align: center;
+}
+
+#intro {
+  padding: 20px;
+  margin: 0 auto;
+}
+
 h1 {
   color: purple;
+}
+
+#topLeft {
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+#topMid {
+  border-right: 1px solid;
+  /* border-left: 1px solid; */
+  border-bottom: 1px solid;
+}
+
+#topRight {
+  border-bottom: 1px solid;
+}
+
+#midLeft {
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+#center {
+  border-right: 1px solid;
+  /* border-left: 1px solid; */
+  border-bottom: 1px solid;
+}
+
+#midRight {
+  border-bottom: 1px solid;
+}
+
+#bottomLeft {
+  border-right: 1px solid;
+}
+
+#bottomMid {
+  border-right: 1px solid;
 }
