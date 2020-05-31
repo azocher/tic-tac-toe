@@ -4,15 +4,12 @@ let resetBtn = document.getElementById("reset");
 let showTurn = document.getElementById("displayTurn")
 
 /* ----------------- GAME Logic Variables --------------- */
-// whose turn is it
-    // let playerTurn = [];
 let turnNum = 0;
 let displayTurn = 0;
-let playerX = [];
-let playerO = [];
+
 // box state (clicked or unclicked)
 // gameOver state - declare win/lose/tie
-    // win arr = []
+// win arrays and player arrays that check against win arrays
 let winCombo = [
     ["topL", "topM", "topR"],
     ["midL", "midM", "midR"],
@@ -20,6 +17,8 @@ let winCombo = [
     ["topL", "midM", "botR"],
     ["topR", "midM", "botL"]
 ];
+let playerX = [];
+let playerO = [];
 // winning combinations
 
 /* ------------------ Event Listeners ----------------- */
@@ -32,17 +31,21 @@ resetBtn.addEventListener("click", reset);
 function boxClick(e) {
     console.log(e.target)
     let boxSpot = e.target;
-    turnNum++
     // plays x or o
-    if (turnNum % 2 !== 0) {
-        boxSpot.classList.add("turnX");
-        showTurn.innerText = "O is going next"
-        console.log("test for false turnNum condition")
-    } else if (turnNum % 2 == 0) {
-        boxSpot.classList.add("turnO");
-        showTurn.innerText = "X is going next"
-    }
-
+    if (boxSpot.classList.contains("turnX") || boxSpot.classList.contains("turnO")) {
+        alert("sorry please click an open box")
+    } else {
+        if (turnNum % 2 !== 0) {
+            boxSpot.classList.add("turnX");
+            showTurn.innerText = "O is going next"
+            //console.log("test for false turnNum condition")
+        }; 
+        if (turnNum % 2 == 0) {
+            boxSpot.classList.add("turnO");
+            showTurn.innerText = "X is going next"
+        };
+        turnNum++
+    }  
 }
 
 
