@@ -42,11 +42,11 @@ grid.addEventListener('click', checkCell);
 /*----------------- FUNCTIONS ---------------------*/
 
 function checkCell(e) {
-    if (e.target.textContent.value == null) {
+    if (e.target.textContent.value == !null) {
+        console.log("Try again");
+    }else {
         cellClick(e);
         turn++;
-    }else {
-        console.log("Try again");
     }
 }
 
@@ -55,13 +55,17 @@ function cellClick(e) {
     if (turn % 2 == 0) {
         playerBox.textContent = "It is player X's turn";
         e.target.textContent = playerO;
+        currentX.push(e.target.id);
+        console.log(currentX);
 
-        // turn++;
     }else {
         playerBox.textContent = "It is player O's turn";
         e.target.textContent = playerX;
-        // turn++;
+        currentO.push(e.target.id);
+        console.log(currentO);
     }
 }
 
-
+function checkWin(e) {
+    currentX.includes(winConditions)
+}
