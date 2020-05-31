@@ -1,3 +1,41 @@
 h1 {
   color: purple;
+  text-align: center;
+  padding-top: 50px;
+}
+body {
+  margin: 0;
+}
+#gameBoard {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(3, auto)
+}
+.cell {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.x {
+  background-image: url("../x-symbol_318-1407.jpg");
+  height: 100px;
+  width: 100px;
+  background-size: cover;
+  cursor: not-allowed;
+  border: 1px solid black;
+}
+.o {
+  background-image: url("../1730832-200.png");
+  height: 100px;
+  width: 100px;
+  background-size: cover;
+  cursor: not-allowed;
+  border: 1px solid black;
 }
