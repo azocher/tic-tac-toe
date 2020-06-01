@@ -1,3 +1,174 @@
-h1 {
-  color: purple;
+*, *::after, *::before {
+  box-sizing: border-box;
 }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #2159a3;
+  background-color: #f5efdf;
+}
+
+#turnText {
+  font-size: 30px;
+  margin-bottom: 0px;
+}
+
+#xTime {
+  display: none;
+}
+
+/* for the gameboard, I googled the display: grid because I wanted to 
+get rid of the space between the boxes in the grid. I also did some 
+research on centering and am trying out the display: flex, justify-, 
+and align- commands.*/
+
+#gameBoard {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  padding-bottom: 330px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  grid-template-columns: repeat(3, auto);
+  margin-top: 0;
+}
+
+.gameBox {
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.gameBox:hover {
+  background-color: lightcoral;
+}
+
+#boxOne {
+  border-top: none;
+  border-left: none;
+}
+
+#boxTwo {
+  border-top: none;
+}
+
+#boxThree {
+  border-top: none;
+  border-right: none;
+}
+
+#boxFour {
+  border-left: none;
+}
+
+#boxSix {
+  border-right: none;
+}
+
+#boxSeven {
+  border-bottom: none;
+  border-left: none;
+}
+
+#boxEight {
+  border-bottom: none;
+}
+
+#boxNine {
+  border-bottom: none;
+  border-right: none;
+}
+
+/* the following code is sourced from this youtube video: https://www.youtube.com/watch?v=Y-GkMjUZsmM
+I needed a push to figure out a few of the CSS/JS functions. However, most of my code is my own, and
+I understand every aspect of this code. */
+
+
+.gameBox.x,
+.gameBox.o {
+  cursor: not-allowed;
+}
+
+.gameBox.x::before,
+.gameBox.x::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 50px;
+  background-color: black;
+}
+
+.gameBox.x::before {
+  transform: rotate(45deg);
+}
+
+.gameBox.x::after {
+  transform: rotate(-45deg);
+}
+
+.gameBox.o::before,
+.gameBox.o::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.gameBox.o::before {
+  width: 50px;
+  height: 50px;
+  background-color: black;
+}
+
+.gameBox.o::after {
+  width: 25px;
+  height: 25px;
+  background-color: #f5efdf;
+}
+
+.gameBox.o:hover::after {
+  background-color: lightcoral;
+}
+
+.winPopUp {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .9);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 5rem;
+  flex-direction: column;
+}
+
+.winPopUp.show {
+  display: flex;
+}
+
+/* aaaand now we go back to my code. */
+
+#reset {
+  font-size: 20px;
+  background-color: deepskyblue;
+  border: 1px solid white;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+

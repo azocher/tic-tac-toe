@@ -3,12 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Front-End</title>
+  <title>Tic-Tac-Toe</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="js/app.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Hello Front-End</h1>
-
-  <script type="text/javascript" src="js/app.js"></script>
+  <h1>We Got Tics, We Got Tacs, We got Toes - Anything You Want</h1>
+  <div id="turnText">It's O time, baby</div>
+  <div id="gameBoard">
+      <div class="gameBox" id="boxOne"></div>
+      <div class="gameBox" id="boxTwo"></div>
+      <div class="gameBox" id="boxThree"></div>
+      <div class="gameBox" id="boxFour"></div>
+      <div class="gameBox" id="boxFive"></div>
+      <div class="gameBox" id="boxSix"></div>
+      <div class="gameBox" id="boxSeven"></div>
+      <div class="gameBox" id="boxEight"></div>
+      <div class="gameBox" id="boxNine"></div>
+  </div>
+  <div class="winPopUp" id="winPop">
+    <div id="winningPop" data-winning-message-text></div>
+    <button id="reset">New Game</button>
+  </div>
 </body>
 </html>
