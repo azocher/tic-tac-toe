@@ -2,7 +2,18 @@ document.addEventListener('DOMContentLoaded', function() {
     /*-----------> DOM REFS <-------------------*/ 
     let everyMove = document.querySelectorAll('.moveSpace');
     let gameSpace = document.querySelector('.gameFace');
+    let restartBtn = document.querySelector('#restart');
 
+    
+    let topLeft = document.getElementById("0");
+    let topMid = document.getElementById("1");
+    let topRight = document.getElementById("2");
+    let midLeft = document.getElementById("3");
+    let center = document.getElementById("4");
+    let midRight = docuemt.getElementById("5");
+    let bottomLeft = document.getElementById("6");
+    let bottomMid = document.getElementById("7");
+    let bottomRight = document.getElementById("8");
 
     /*-----------> Game Logic Variables <-----------*/ 
     let userTurn = null;
@@ -21,15 +32,29 @@ document.addEventListener('DOMContentLoaded', function() {
     let gameState = ["", "", "", "", "", "", "", "", ""]
 
     /*-----------> Event Listener <-----------*/ 
-    function init() {
-        for (var i = 0; i < everyMove.length; i++) {
-            everyMove[i].innerText = '';
-            everyMove[i].addEventListener('click', click)
-        }
-    }
+    everyMove.addEventListener('click', function {
+        everyMove.innerText = "X";
 
+
+
+    });
+    
+
+
+    // function init() {
+    //     clickedBox.innerText = playerMove;
+    
+        // for (var i = 0; i < everyMove.length; i++) {
+        //     everyMove[i].innerText = '';
+        //     everyMove[i].addEventListener('click', click)
+        // }
+    // }
+    
+    //function to register click
     function click(e) {
         console.log(e.target.id);
     }
 
+
+    //Function to alternate player
 })
