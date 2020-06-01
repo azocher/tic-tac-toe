@@ -12,7 +12,12 @@ let player = 0;
 let winningCombos = [
     ["upperLeft", "upperCenter", "upperRight"],
     ["middleLeft", "middleLeft", "middleRight"],
-    ["lowerLeft", "lowerCenter", "lowerRight"]
+    ["lowerLeft", "lowerCenter", "lowerRight"],
+    ["upperLeft", "middleLeft", "lowerLeft"],
+    ["upperCenter", "middleCenter", "lowerCenter"],
+    ["upperRight", "middleRight", "lowerRight"],
+    ["upperLeft", "middleCenter", "lowerRight"],
+    ["upperRight", "middleCenter", "lowerLeft"]
     ];
 let boxesToMark = {
     upperLeft: null,
@@ -51,7 +56,11 @@ function init() {
 
 
 function winCheck() {
-     for (let i =0; i < winningCombos.length; i++) {
+    let sum = 0
+    for (let key in boxesToMark) {
+        sum += boxesToMark[key];
+    }
+    for (let i =0; i < winningCombos.length; i++) {
         let matchCountX = 0;
         let matchCountO = 0;
         for (let j = 0; j < winningCombos[i].length; j++) {
@@ -66,12 +75,19 @@ function winCheck() {
                 matchCountO++;
                 console.log(matchCountO);
            }  if  (playerOneChoices.includes(winningCombos[i][j]) && matchCountX === 3) {    
-                resultDiv.innerText = ("player one win"); 
+                resultDiv.innerText = "Player One wins, Player Two dies"; 
+                playerTurnDiv.innerText = "Play again?";
                 gameOver = true;
            } if (playerTwoChoices.includes(winningCombos[i][j]) && matchCountO === 3) {
-                resultDiv.innerText = ("player two win");
+                resultDiv.innerText = "Player Two wins, Player One dies";
+                playerTurnDiv.innerText = "Play again?";
                 gameOver = true;
-                       } 
+            } if (sum === 4) {
+                resultDiv.innerText = "Tie!";
+                gameOver = true;
+                playerTurnDiv.innerText = "Play again?";
+            } 
+
          }
     
      }
@@ -82,22 +98,22 @@ function winCheck() {
 function boxClick(e) {
     let box = e.target.id;
     if (gameOver === false && player === 0 && boxesToMark[box] === null) {
-        e.target.innerText = ("X");
+        e.target.innerText = "X";
         boxesToMark[box] = 0;
         console.log(boxesToMark[box])
         playerOneChoices.push(e.target.id)
         console.log(playerOneChoices) 
-        playerTurnDiv.innerText = ("Player Two- you're up!");
+        playerTurnDiv.innerText = "Player Two- you're up!";
         player = 1;
         
     } 
      if (gameOver === false && player === 1 && boxesToMark[box] === null) {
-        e.target.innerText = ("O");
+        e.target.innerText = "O";
         boxesToMark[box] = 1;
         console.log(boxesToMark[box])
         playerTwoChoices.push(e.target.id)
         console.log(playerTwoChoices) 
-        playerTurnDiv.innerText = ("Your turn Player One!")
+        playerTurnDiv.innerText = "Your turn Player One!"
          player = 0;
     }
     winCheck();

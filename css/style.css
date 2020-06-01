@@ -1,5 +1,7 @@
 body {
     text-align: center;
+    background-color: #000000;
+    color: #ad0404;
 }
 
 .gameRow {
@@ -8,6 +10,7 @@ body {
     height: 100px;
     border: 2px solid black ;
     margin: 0 auto;
+    background-color: #ad0404;
 }
 
 .upperRow {
