@@ -43,7 +43,7 @@ function reset() {
     for (let box in boxesToMark) {
         boxesToMark[box] = null;
     }
-    
+
     init();
 }
 
@@ -117,16 +117,6 @@ function boxClick(e) {
     winCheck();
 }
 
-
-
-
-
-
-
-
-function endGame() {
-
-}
 
 
 })
