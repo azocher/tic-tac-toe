@@ -96,12 +96,69 @@ function stopPlay() {
     //reset();
 }
 
-// function reset() {
-//     if ()
+function reset(e) {
+    //console.log("test")
+    //let board = gameBoard.children[i].className("turnO")
 
-// //    div.classList.remove("turnO");
-// //    div.classList.remove("turnX");
-// }
+    // top row removal
+    if (topL.classList.contains("turnO")) {
+        topL.classList.remove("turnO")
+    } else if (topL.classList.contains("turnX")) {
+        topL.classList.remove("turnX")
+    };
+    if (topM.classList.contains("turnO")) {
+        topM.classList.remove("turnO")
+    } else if (topM.classList.contains("turnX")) {
+        topM.classList.remove("turnX")
+    };
+    if (topR.classList.contains("turnO")) {
+        topR.classList.remove("turnO")
+    } else if (topR.classList.contains("turnX")) {
+        topR.classList.remove("turnX")
+    };
+
+    // mid row removal
+    if (midL.classList.contains("turnO")) {
+        midL.classList.remove("turnO")
+    } else if (midL.classList.contains("turnX")) {
+        midL.classList.remove("turnX")
+    };
+    if (midM.classList.contains("turnO")) {
+        midM.classList.remove("turnO")
+    } else if (midM.classList.contains("turnX")) {
+        midM.classList.remove("turnX")
+    };
+    if (midR.classList.contains("turnO")) {
+        midR.classList.remove("turnO")
+    } else if (midR.classList.contains("turnX")) {
+        midR.classList.remove("turnX")
+    };
+
+    // bottom row removal
+    if (botL.classList.contains("turnO")) {
+        botL.classList.remove("turnO")
+    } else if (botL.classList.contains("turnX")) {
+        botL.classList.remove("turnX")
+    };
+    if (botM.classList.contains("turnO")) {
+        botM.classList.remove("turnO")
+    } else if (botM.classList.contains("turnX")) {
+        botM.classList.remove("turnX")
+    };
+    if (botR.classList.contains("turnO")) {
+        botR.classList.remove("turnO")
+    } else if (botR.classList.contains("turnX")) {
+        botR.classList.remove("turnX")
+    };
+    // reset arrays and turns
+    playerO = [];
+    playerX = [];
+    turnNum = 0;
+    displayTurn = 0;
+
+    gameBoard.addEventListener("click", boxClick);
+
+}
 
 
 
