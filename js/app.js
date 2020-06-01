@@ -12,6 +12,7 @@ var bottomright = document.querySelector('.bottomright');
 var resetButton = document.querySelector("button");
 var currentScore = document.querySelector(".score");
 var currentRound = document.querySelector(".round");
+var playerIcon = document.querySelector("span")
 
 /* ------ Game Logic Vars ------ */
 
@@ -30,41 +31,70 @@ let round = 1;
 
 /* ------ Event Listeners ------ */
 
-topleft.addEventListener("click", markIt);
-topPlease.addEventListener("click", markIt);
-topright.addEventListener("click", markIt);
+/// I put more of these bad boys in the init() function 
 
-left.addEventListener("click", markIt);
-middle.addEventListener("click", markIt);
-right.addEventListener("click", markIt);
-
-bottomleft.addEventListener("click", markIt);
-bottom.addEventListener("click", markIt);
-bottomright.addEventListener("click", markIt);
 
 resetButton.addEventListener("click", reset);
+
 
 
 /* ------ Functions ------ */
 function whoseTurn(){
     if (turn % 2 === 0) {
        activePlayer = PLAYER1;
+       playerIcon.innerText = "🧛🏽‍♀️"
     } else {
         activePlayer = PLAYER2;
+        playerIcon.innerText = "🧄"
     }
 }
 
 function reset() {
-    //wipe the board
+    console.log(round);
     currentRound.innerText = "Round: " + round++;
     gameOver = false;
+
+    init();
+}
+
+function init(){
     vampyVamps = [];
     garGar = []; 
-}
+    resetButton.disabled = true;
+
+    topleft.addEventListener("click", markIt);
+    topPlease.addEventListener("click", markIt);
+    topright.addEventListener("click", markIt);
+
+    left.addEventListener("click", markIt);
+    middle.addEventListener("click", markIt);
+    right.addEventListener("click", markIt);
+
+    bottomleft.addEventListener("click", markIt);
+    bottom.addEventListener("click", markIt);
+    bottomright.addEventListener("click", markIt);
+
+    removeClass();
+  }
+
+
+  function removeClass() {
+    topleft.classList.remove("vamp", "gar");
+    topPlease.classList.remove("vamp", "gar");
+    topright.classList.remove("vamp", "gar");
+    left.classList.remove("vamp", "gar");
+    middle.classList.remove("vamp", "gar");
+    right.classList.remove("vamp", "gar");
+    bottomleft.classList.remove("vamp", "gar");
+    bottom.classList.remove("vamp", "gar");
+    bottomright.classList.remove("vamp", "gar"); 
+
+  }
 
 function endGame() {
     gameOver = true;
     currentScore.innerText = "Score: " + player1Score + " | " + player2Score;
+    resetButton.disabled = false;
 }
 
 function markIt(e) {
@@ -85,17 +115,24 @@ function markIt(e) {
 }
 
 winCombo = [
+    //vampyvamp wins
         ["square topleft vamp", "square topp vamp", "square topright vamp"],
         ["square left vamp", "square middle vamp", "square right vamp"],
         ["square bottomleft vamp", "square bottom vamp", "square bottomright vamp"],
         ["square topleft vamp", "square middle vamp", "square bottomright vamp"],
-        ["square topleft vamp", "sqare left vamp", "square bottomleft vamp"],
+        ["square topleft vamp", "square left vamp", "square bottomleft vamp"],
         ["square topright vamp", "square middle vamp", "square bottomleft vamp"],
+        ["square topp vamp", "square middle vamp", "square bottom vamp"],
+        ["square topright vamp", "square right vamp", "square bottomright vamp"],
+    //gargar wins
         ["square topleft gar", "square topp gar", "square topright gar"],
         ["square left gar", "square middle gar", "square right gar"],
         ["square bottomleft gar", "square bottom gar", "square bottomright gar"],
         ["square topleft gar", "square middle gar", "square bottomright gar"],
         ["square topright gar", "square middle gar", "square bottomleft gar"],
+        ["square topright gar", "square middle gar", "square bottomleft gar"],
+        ["square topp gar", "square middle gar", "square bottom vamp"],
+        ["square topright gar", "square right gar", "square bottomright gar"],
 ]
 
 

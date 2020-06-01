@@ -66,10 +66,14 @@ button {
   background-color: #ffffff;
 }
 
+.whoseturn {
+  font-size: xx-large;
+  margin: 10px;
+}
+
 .topleft, .left, .bottomleft {
   border-left: none;
-
-}
+} 
 
 .topright, .right, .bottomright {
   border-right: none;
