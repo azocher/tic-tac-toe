@@ -1,3 +1,6 @@
+/*used this video to get my grid format and for some javascript aspects
+https://youtu.be/Y-GkMjUZsmM found it very helpful, but there was lots
+of advanced css I didnt feel comfortable implimenting*/
 h1 {
   color: purple;
   text-align: center;
@@ -6,13 +9,14 @@ h1 {
 body {
   margin: 0;
 }
-button {
+#reset {
   align-content: center;
   height: 50px;
   width: 100px;
   justify-content: center;
   position: relative;
   text-align: center;
+  margin: 0 auto;
 }
 h2 {
   text-align: center;
