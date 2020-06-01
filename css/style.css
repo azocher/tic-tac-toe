@@ -1,3 +1,9 @@
+body {
+  background-image: url("https://i0.wp.com/www.carlagrossetti.com/wp-content/uploads/2020/03/pexels-photo-1741696.jpg?w=500");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 main {
   margin: 0;
   padding: 0;

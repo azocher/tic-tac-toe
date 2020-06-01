@@ -10,16 +10,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let topRight = document.getElementById("2");
     let midLeft = document.getElementById("3");
     let center = document.getElementById("4");
-    let midRight = docuemt.getElementById("5");
+    let midRight = document.getElementById("5");
     let bottomLeft = document.getElementById("6");
     let bottomMid = document.getElementById("7");
     let bottomRight = document.getElementById("8");
 
     /*-----------> Game Logic Variables <-----------*/ 
-    let userTurn = null;
-    let computerTurn = null;
-    let playerMove = "X";
-    let compMove = "O"
+    let userTurn = true;
+    
+    const playerMove = "X";
+    const compMove = "O"
     let winConditions = [[0,1,2], 
     [3,4,5], 
     [6,7,8], 
@@ -32,12 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let gameState = ["", "", "", "", "", "", "", "", ""]
 
     /*-----------> Event Listener <-----------*/ 
-    everyMove.addEventListener('click', function {
-        everyMove.innerText = "X";
-
-
-
-    });
+    gameSpace.addEventListener('click', click);
     
 
 
@@ -52,9 +47,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     //function to register click
     function click(e) {
-        console.log(e.target.id);
+        let clickedDiv = e.target.id;
+        console.log("you clicked " + clickedDiv);
+        clickedDiv.innerText = "X"
+        
     }
 
+    // function playerTurn(clickedDiv) {
+    //     clickedDiv.classList.add(currentClass);
+        
+    // }
 
     //Function to alternate player
 })
