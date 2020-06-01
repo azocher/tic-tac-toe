@@ -4,23 +4,18 @@ var origBoard;
 const huPlayer = 'O';
 const aiPlayer = 'X';
 const winCombos = [
+	[0, 1, 2],
 	[3, 4, 5],
-    [0, 1, 2],
 	[6, 7, 8],
-    [0, 3, 6],
-    [6, 4, 2]
+	[0, 3, 6],
 	[1, 4, 7],
 	[2, 5, 8],
-	[0, 4, 8],	
+	[0, 4, 8],
+	[6, 4, 2]
 ]
-
-// -----This variabe is my universal listner/ Qselector for game board ----/
 
 const cells = document.querySelectorAll('.cell');
 startGame();
-
-
-// --------Start Game ----------------- //
 
 function startGame() {
 	document.querySelector(".endgame").style.display = "none";
@@ -31,9 +26,6 @@ function startGame() {
 		cells[i].addEventListener('click', turnClick, false);
 	}
 }
-
-
-// ------------------ Play Game -------------------------------//
 
 function turnClick(square) {
 	if (typeof origBoard[square.target.id] == 'number') {
@@ -62,12 +54,10 @@ function checkWin(board, player) {
 	return gameWon;
 }
 
-// -----------------------Game Over :( -----------------------------//
-
 function gameOver(gameWon) {
 	for (let index of winCombos[gameWon.index]) {
 		document.getElementById(index).style.backgroundColor =
-			gameWon.player == huPlayer ? "green" : "red";
+			gameWon.player == huPlayer ? "blue" : "red";
 	}
 	for (var i = 0; i < cells.length; i++) {
 		cells[i].removeEventListener('click', turnClick, false);
@@ -91,7 +81,7 @@ function bestSpot() {
 function checkTie() {
 	if (emptySquares().length == 0) {
 		for (var i = 0; i < cells.length; i++) {
-			cells[i].style.backgroundColor = "blue";
+			cells[i].style.backgroundColor = "green";
 			cells[i].removeEventListener('click', turnClick, false);
 		}
 		declareWinner("Tie Game!")
@@ -102,10 +92,7 @@ function checkTie() {
 
 
 
-
-
-
-
+// End ------ //
 
 
 
