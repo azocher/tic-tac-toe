@@ -16,8 +16,10 @@ let playerX = "X";
 let playerO = "O";
 let currentX = [];
 let currentO = [];
-let reset = document.getElementById("reset")
+// let reset = document.getElementById("reset")
 let gameOver = 0;
+let xWin = false;
+let oWin = false;
 
 
 /*------------------- GAME LOGIC -------------------*/
@@ -109,10 +111,12 @@ function checkWin() {
             if (currentX.includes(winConditions[i][j]) && matchingComboX === 3) {
                 playerBox.textContent = "PLAYER O WINS!";
                 gameOver = 1;
+                oWin = true;
             }
             if (currentO.includes(winConditions[i][j]) && matchingComboO === 3) {
                 playerBox.textContent = "PLAYER X WINS!";
                 gameOver = 1;
+                xWin = true;
             }  
         
          }
@@ -121,5 +125,8 @@ function checkWin() {
 }
 
 function gameDraw() {
-    playerBox.textContent = "DRAW!  Nobody wins this round"
+    if (xWin == false && oWin == false) {
+        playerBox.textContent = "DRAW!  Nobody wins this round"
+    }
+    
 }
