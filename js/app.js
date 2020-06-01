@@ -16,6 +16,8 @@ let playerX = "X";
 let playerO = "O";
 let currentX = [];
 let currentO = [];
+let reset = document.getElementById("reset")
+let gameOver = 0;
 
 
 /*------------------- GAME LOGIC -------------------*/
@@ -28,7 +30,7 @@ let winConditions = [
     ["cell2", "cell5", "cell8"],
     ["cell3", "cell6", "cell9"],
     ["cell1", "cell5", "cell9"],
-    ["cell3", "cell5", "cell9"]
+    ["cell3", "cell5", "cell7"]
 ];
 
 
@@ -64,24 +66,26 @@ function checkCell(e) {
 */
 
 function cellClick(e) {
-    if (turn % 2 == 0) {
-        playerBox.textContent = "It is player X's turn";
-        e.target.textContent = playerO;
-        currentX.push(e.target.id);
-        // console.log(currentX);
-        checkWin();
-        if (currentX.length >= 4 && currentO.length >= 4) {
-            gameDraw();
-        }
+    if (gameOver == 0) {
+        if (turn % 2 == 0) {
+            playerBox.textContent = "It is player X's turn";
+            e.target.textContent = playerO;
+            currentX.push(e.target.id);
+            // console.log(currentX);
+            checkWin();
+            if (currentX.length >= 5 && currentO.length >= 4) {
+                gameDraw();
+            }
 
-    }else {
-        playerBox.textContent = "It is player O's turn";
-        e.target.textContent = playerX;
-        currentO.push(e.target.id);
-        // console.log(currentO);
-        checkWin();
-        if (currentX.length >= 4 && currentO.length >= 4) {
-            gameDraw();
+        }else {
+            playerBox.textContent = "It is player O's turn";
+            e.target.textContent = playerX;
+            currentO.push(e.target.id);
+            // console.log(currentO);
+            checkWin();
+            if (currentX.length >= 4 && currentO.length >= 5) {
+                gameDraw();
+            }
         }
     }
 }
@@ -104,10 +108,11 @@ function checkWin() {
             } 
             if (currentX.includes(winConditions[i][j]) && matchingComboX === 3) {
                 playerBox.textContent = "PLAYER O WINS!";
+                gameOver = 1;
             }
             if (currentO.includes(winConditions[i][j]) && matchingComboO === 3) {
-                playerBox.textContent = "PLAYER X WINS!"
-                return
+                playerBox.textContent = "PLAYER X WINS!";
+                gameOver = 1;
             }  
         
          }
