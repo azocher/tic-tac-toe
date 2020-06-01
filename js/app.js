@@ -2,7 +2,6 @@
 //-----------  Computer Player solution  ---------//
 ////////////////////////////////////////////////////
 
-
 const  game = new Game();
 game.start();
 
