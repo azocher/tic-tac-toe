@@ -1,3 +1,11 @@
+Resources:
+
+Mostly I just used google to look up any questions I had with syntax/function setups, mostly using GA Notes, W3 Schools, anmd Mozilla Web Dev. I also used Bootstrap for the framework of my html. 
+
+
+
+
+
 ![General Assembly Logo](http://i.imgur.com/ke8USTq.png)
 
 # Tic Tac Toe
