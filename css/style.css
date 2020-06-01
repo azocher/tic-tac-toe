@@ -1,3 +1,100 @@
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
 h1 {
-  color: purple;
+  color: #000000;
+}
+
+img {
+  width: 60px;
+  height: 60px;
+}
+
+body {
+  text-align: center;
+}
+
+.gameboard {
+  text-align: center;
+  width: 312px;
+  height: 308px;
+  margin: 70px auto;
+  background-color: #000000;
+}
+
+.stats {
+  border: 1px solid #000000;
+  border-radius: 5px;
+  width: 40%;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+button {
+  margin: 9px;
+}
+
+
+.score {
+  margin: 9px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+
+.round {
+  margin: 9px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+
+.result {
+  margin: 9px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.square{
+  box-sizing: border-box;
+  width: 101px;
+  height: 100px;
+  border: 1px solid #000000;
+  margin: 0 auto;
+  display: inline-block;
+  background-color: #ffffff;
+}
+
+.topleft, .left, .bottomleft {
+  border-left: none;
+
+}
+
+.topright, .right, .bottomright {
+  border-right: none;
+
+}
+
+.topleft, .topp, .topright {
+  border-top: none;
+
+}
+.bottomleft, .bottom, .bottomright {
+  border-bottom: none;
+  
+}
+
+.vamp {
+  background-image: url("img/vampire-emoji.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.gar {
+  background-image: url("img/garlic-emoji.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
