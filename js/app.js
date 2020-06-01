@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////
-//--------------------Computer solution-----------//
+//-----------  Computer Player solution  ---------//
 ////////////////////////////////////////////////////
 
-const  game = new Game();
 
+const  game = new Game();
 game.start();
 
 function Game() {
@@ -90,8 +90,10 @@ function restartGame() {
 document.querySelector('.reset').addEventListener('click', restartGame);
 
 
+
+
 ////////////////////////////////////////////////////
-//------------------Player solution---------------//
+//------------ Hunan Player solution -------------//
 ////////////////////////////////////////////////////
 
 /*
@@ -116,6 +118,7 @@ const winIndices = [
     [0, 4, 8],
     [2, 4, 6]
 ];
+
 
 function cellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
@@ -171,6 +174,7 @@ function validation() {
     takeTurn();
 }
 
+
 function restartGame() {
     gameActive = true;
     currentPlayer = "X";
@@ -183,3 +187,9 @@ document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click'
 document.querySelector('.reset').addEventListener('click', restartGame);
 
 */
+
+////////////////////////////////////////////////////
+//---------------   GA solution    ---------------//
+////////////////////////////////////////////////////
+
+
