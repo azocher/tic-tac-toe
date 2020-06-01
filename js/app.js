@@ -10,11 +10,13 @@ let cell6 = document.getElementById("cell6");
 let cell7 = document.getElementById("cell7");
 let cell8 = document.getElementById("cell8");
 let cell9 = document.getElementById("cell9");
+let cells = [cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9]
 let turn = 1;
 let playerX = "X";
 let playerO = "O";
 let currentX = [];
 let currentO = [];
+
 
 /*------------------- GAME LOGIC -------------------*/
 
@@ -34,6 +36,7 @@ let winConditions = [
 /*---------------- EVENT LISTENERS -----------------*/
 
 grid.addEventListener('click', checkCell);
+
 
 
 
@@ -59,6 +62,7 @@ function checkCell(e) {
     }
 }
 */
+
 function cellClick(e) {
     if (turn % 2 == 0) {
         playerBox.textContent = "It is player X's turn";
@@ -66,6 +70,9 @@ function cellClick(e) {
         currentX.push(e.target.id);
         // console.log(currentX);
         checkWin();
+        if (currentX.length >= 4 && currentO.length >= 4) {
+            gameDraw();
+        }
 
     }else {
         playerBox.textContent = "It is player O's turn";
@@ -73,6 +80,9 @@ function cellClick(e) {
         currentO.push(e.target.id);
         // console.log(currentO);
         checkWin();
+        if (currentX.length >= 4 && currentO.length >= 4) {
+            gameDraw();
+        }
     }
 }
 
@@ -105,52 +115,6 @@ function checkWin() {
 
 }
 
-
-/*
-function newCheckWin(playerArray) {
-    for (i = 0' i < winConditions.length; i++ ) {
-        let counter = 0;
-        for (j = 0; j < winCondition[i]; j++) {
-            console.log("counter" + counter)
-            console.log("win element" + winConditions[i][j])
-            if (playerArray.includes(winCondition[i][j])) {
-                counter ++
-                if (counter == 3) {
-                    console.log("Player wins");
-                    return
-                }
-            }
-        }
+function gameDraw() {
+    playerBox.textContent = "DRAW!  Nobody wins this round"
 }
-}
-*/
-
-
-
-
-
-// function checkWin() {
-//     for (let i = 0; i < winConditions.length; i++) {
-//         let matchingCombo = 0;
-//         console.log('first step');
-//         for (let j = 0; j <winConditions[i].length; j++) {
-//             console.log('second step');
-//             if (currentX.includes(winConditions[i][j])) {
-//                 console.log('third step');
-//                 matchingCombo++;
-//             }
-//                 if (currentX.includes(winConditions[i]) && matchingCombo === 3) {
-//                     console.log('Game Over');
-//                 }
-//         }
-//     }
-// }
-
-
-
-
-
-// if(playerTurn) {
-//     playerX.push
-// } 
-// */
