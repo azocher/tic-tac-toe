@@ -28,8 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
     [0,3,6],
     [1,4,7]
     [2,5,8]];
+    let turn = 0;
+    let 
 
-    let gameState = ["", "", "", "", "", "", "", "", ""]
+    // let gameState = ["", "", "", "", "", "", "", "", ""]
 
     /*-----------> Event Listener <-----------*/ 
     gameSpace.addEventListener('click', click);
@@ -49,14 +51,21 @@ document.addEventListener('DOMContentLoaded', function() {
     function click(e) {
         let clickedDiv = e.target.id;
         console.log("you clicked " + clickedDiv);
+        
+        playerTurn();
+
         clickedDiv.innerText = "X"
         
     }
 
-    // function playerTurn(clickedDiv) {
-    //     clickedDiv.classList.add(currentClass);
-        
-    // }
+    function playerTurn() {
+        turn++;
+        if (turn % 2 === 0) {
+            activePlayer = playerMove;
+        } else {
+            activePlayer = compMove;
+        }
+    }
 
-    //Function to alternate player
+    
 })
