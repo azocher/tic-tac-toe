@@ -1,3 +1,55 @@
-h1 {
-  color: purple;
+*{
+  font-family: 'Architects Daughter', cursive;
+}
+
+h2 { padding-top: 60px; }
+
+div.board h2
+{
+  height: 150px;
+  border: 2px solid black;
+  font-size: 55px;
+}
+
+div.board {
+  width: 600px;
+  border: 1px; solid blue;
+  margin: 0 auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+div[id^="row"] div {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  float: left;
+  box-sizing: border-box;
+}
+
+div[id^="row"]
+{
+  overflow: scroll;
+  clear:both;
+}
+
+div[id^="row"] div:first-child {border-left: none;}
+div[id^="row"] div:last-child {border-right: none;}
+#row-3 div {border-bottom: none;}
+#row-1 div {border-top: none;}
+
+span {
+  font-size: 55px;
+  padding-top: 60px;
+  display: inline-block;
+}
+
+body {
+  background-color: white;
+  overflow: scroll;
+  width: 1000px;
+  margin: 10px auto;
+  text-align: center;
+  padding: 20px;
 }
