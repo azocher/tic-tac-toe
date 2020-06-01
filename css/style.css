@@ -1,3 +1,54 @@
-h1 {
-  color: purple;
+* {
+  margin: O;
+  padding: 0;
+  user-select: none; 
+}
+
+body {
+  font-family: "Frijole";
+  text-align: center;
+  width: 1000px;
+  margin: 10px auto;
+  background: url("https://comicvine1.cbsistatic.com/uploads/original/11138/111380194/7197392-2657205453-90637.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 10px;
+  /* padding: 10px; */
+}
+
+h2 {
+  font-size: 75px;
+  text-align: center;
+  color:#f43636d9;
+  padding: 20px;
+}
+
+span {
+  font-family: "Chelsea Market";
+  font-size: 150px;
+  margin-top: 20px;
+  color: #130b04de;
+}
+
+/*Grabbing all the divs from the layer divs*/
+div[id^="layer-"] div {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ffffff7a;
+  float: left;  
+  overflow: hidden;
+}
+
+div[id^="layer-"] {
+  width: 608px;
+  box-sizing: border-box;
+  clear: float;
+  overflow: hidden;
+}
+
+/*Using the container Div to center the game*/
+#container {
+  width: 608px;
+  overflow: hidden;
+  margin: 0 auto;
 }
