@@ -13,6 +13,9 @@ var resetButton = document.querySelector("button");
 var currentScore = document.querySelector(".score");
 var currentRound = document.querySelector(".round");
 var playerIcon = document.querySelector("span")
+var gameResults = document.querySelector(".whoseturn")
+var winnerWinner = document.querySelector(".winner")
+
 
 /* ------ Game Logic Vars ------ */
 
@@ -26,6 +29,7 @@ let player2Score = 0;
 let vampyVamps = [];
 let garGar = [];
 let round = 1;
+let gameBoard = [];
 
 
 
@@ -53,7 +57,8 @@ function reset() {
     console.log(round);
     currentRound.innerText = "Round: " + round++;
     gameOver = false;
-
+    winnerWinner.innerText = "";
+    gameResults = "It's <span>🧛🏽‍♀️</span>'s turn!"
     init();
 }
 
@@ -61,6 +66,7 @@ function init(){
     vampyVamps = [];
     garGar = []; 
     resetButton.disabled = true;
+    gameBoard = []
 
     topleft.addEventListener("click", markIt);
     topPlease.addEventListener("click", markIt);
@@ -95,6 +101,23 @@ function endGame() {
     gameOver = true;
     currentScore.innerText = "Score: " + player1Score + " | " + player2Score;
     resetButton.disabled = false;
+    turn = 0;
+
+    removeListeners();
+}
+
+function removeListeners() {
+    topleft.removeEventListener("click", markIt);
+    topPlease.removeEventListener("click", markIt);
+    topright.removeEventListener("click", markIt);
+
+    left.removeEventListener("click", markIt);
+    middle.removeEventListener("click", markIt);
+    right.removeEventListener("click", markIt);
+
+    bottomleft.removeEventListener("click", markIt);
+    bottom.removeEventListener("click", markIt);
+    bottomright.removeEventListener("click", markIt);
 }
 
 function markIt(e) {
@@ -105,9 +128,11 @@ function markIt(e) {
         let square =  e.currentTarget.className;
         if (activePlayer === PLAYER1){
             vampyVamps.push(square);
+            gameBoard.push(square);
         } else if (activePlayer === PLAYER2){
             garGar.push(square);
-        }
+            gameBoard.push(square);
+        } 
         checkGame();
         turn++;
         whoseTurn(turn);
@@ -143,14 +168,22 @@ function checkGame () {
         for (let j = 0; j < winCombo[i].length; j++) {
             if (vampyVamps.includes(winCombo[i][j])) {
                 matchComboV++;
-            }  if (matchComboV === 3) {
-                player1Score++;
-                endGame();
+                }  if (matchComboV === 3) {
+                    player1Score++;    
+                    winnerWinner.innerText = "🧛🏽‍♀️ wins!"  
+                    gameResults.innerText = ""     
+                    endGame();
             } else if (garGar.includes(winCombo[i][j])) {
                 matchComboG++;
-            }   if (matchComboG === 3) {
-                player2Score++;
-                endGame();
+                }   if (matchComboG === 3) {
+                    player2Score++; 
+                    winnerWinner.innerText = "🧄 wins!"     
+                    gameResults.innerText = ""           
+                    endGame();
+            } else if (gameBoard.length > 8 && matchComboG !== 3 && matchComboV !== 3) {    
+                   winnerWinner.innerText = "It's a tie!"   
+                   gameResults.innerText = ""    
+                    endGame();
             }
         }   
     }
