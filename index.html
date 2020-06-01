@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Front-End</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/ttt.js"></script>
+    <title>Tic Tac Toe</title>
 </head>
 <body>
-  <h1>Hello Front-End</h1>
+    <h1>Tic Tac Toe</h1>
 
-  <script type="text/javascript" src="js/app.js"></script>
+    <main class='gameSpace'>
+        <form onreset="reset()">
+            <div id="playerTurn">
+                <p>Player One Start</p>
+            </div>
+            <div id="gameBoard">
+                <div class="gameRow">
+                    <div class='upperRow box' id='upperLeft'>please</div>
+                    <div class='upperRow box' id='upperCenter'>don't</div>
+                    <div class='upperRow box' id='upperRight'>leave</div>
+                </div>
+                <div class="gameRow">
+                    <div class='middleRow box' id='middleLeft'>play</div>
+                    <div class='middleRow box' id='middleCenter'>with</div>
+                    <div class='middleRow box' id='middleRight'>me</div>
+                </div>
+                <div class="gameRow">
+                    <div class='lowerRow box' id='lowerLeft'>or</div>
+                    <div class='lowerRow box' id='lowerCenter'>choose</div>
+                    <div class='lowerRow box' id='lowerRight'>death</div>
+                </div>
+            </div>
+            <button id="reset">Reset Game</button>
+            <div id='results'>
+                Who will win?
+            </div>
+         </form>
+    </main>
+
 </body>
 </html>
