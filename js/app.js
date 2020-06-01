@@ -2,26 +2,24 @@
 let gameBoard = document.getElementById("gameBoard");
 let resetBtn = document.getElementById("reset");
 let showTurn = document.getElementById("displayTurn")
+let displayResults = document.getElementById("displayResults")
 
 /* ----------------- GAME Logic Variables --------------- */
 let turnNum = 0;
 let displayTurn = 0;
-//let endGame = [];
 let playerX = [];
 let playerO = [];
 
-// box state (clicked or unclicked)
-// gameOver state - declare win/lose/tie
-// win arrays and player arrays that check against win arrays
 let winCombo = [
     ["topL", "topM", "topR"],
     ["midL", "midM", "midR"],
     ["botL", "botM", "botR"],
     ["topL", "midM", "botR"],
-    ["topR", "midM", "botL"]
+    ["topR", "midM", "botL"],
+    ["topR", "midR", "botR"],
+    ["topM", "midM", "botM"],
+    ["topL", "midL", "botL"]
 ];
-
-// winning combinations
 
 /* ------------------ Event Listeners ----------------- */
 gameBoard.addEventListener("click", boxClick);
@@ -30,7 +28,6 @@ resetBtn.addEventListener("click", reset);
 
 /* ---------------- FUNCTIONS MAH DUDE ------------------- */
 
-// click box, display x or o, add class to div, display whose turn is next, and log it to appropriate player array
 function boxClick(e) {
     //console.log(e.target)
     let boxSpot = e.target;
@@ -44,7 +41,7 @@ function boxClick(e) {
             let choice = boxSpot.id;
             if (playerX.indexOf(choice) < 0) {
                 playerX.push(choice)
-                console.log(playerX)
+                //console.log(playerX)
             }
         }; 
         if (turnNum % 2 == 0) {
@@ -53,37 +50,58 @@ function boxClick(e) {
             let choice = boxSpot.id;
             if (playerO.indexOf(choice) < 0) {
                 playerO.push(choice)
-                console.log(playerO);
+                //console.log(playerO);
             }
         };
         turnNum++
-        
+        if (turnNum === 9) {
+            showTurn.innerText = "Cat's game"
+        }
+        endGame();
     }  
-    endGame();
 };
 
-// function for check for game winning results
 
-function endGame(playerX, playerO, winCombo) {
-    if (playerX.includes("topL", "topM", "topR")) {
-        console.log("player X wins")
+ /* ------------- We're in the endGame now --------------- */
+function endGame() {
+for (let i = 0; i < winCombo.length; i++) { 
+    let matchComboX = 0;
+    let matchComboO = 0;
+    for (let j = 0; j < winCombo[i].length; j++) {
+        if (playerX.includes(winCombo[i][j])) {
+            matchComboX++
+            //console.log(matchComboX)
+        }
+        if (playerO.includes(winCombo[i][j])) {
+            matchComboO++
+            //console.log(matchComboO)
+        } 
+        if (playerX.includes(winCombo[i][j]) && matchComboX === 3) {
+            //alert("we have a winner")
+            showTurn.innerText = "Congrats X wins"
+            stopPlay();
+        }
+        if (playerO.includes(winCombo[i][j]) && matchComboO === 3) {
+            //alert("O wins")
+            showTurn.innerText = "Congrats O wins"
+            stopPlay();
+        }
     }
+  } 
 }
-// if in both playerX and winCombo then add to new array. If new array = combo then declare winner
-// if else to check for all classes attached to a div 
 
-// for (length of winCombo, var i) { 
-//     // create and set matchCombo = 0
-//   ​
-//     for (length of current i/nestedArr, var j) {
-//       // check if playerX or playerO array.includes(nestedArr[j])
-//       // if true, increase matchCombo++ 
-//       // else, do nothing
-//     }
-//   ​
-//   } 
+function stopPlay() {
+    gameBoard.removeEventListener("click", boxClick);
+    document.getElementById("reset").disabled = false;
+    //reset();
+}
 
+// function reset() {
+//     if ()
 
+// //    div.classList.remove("turnO");
+// //    div.classList.remove("turnX");
+// }
 
 
 
