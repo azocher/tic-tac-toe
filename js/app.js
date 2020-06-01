@@ -41,7 +41,7 @@ function togglePlayer()
     if(whoseTurn == 0) whoseTurn = 1;
     else whoseTurn = 0;
 
-    document.getElementById("game-display").innerText = players[whoseTurn] + "'s turn";
+    updateGameDisplay(players[whoseTurn] + "'s turn");
 }
 
 //win tester
@@ -53,15 +53,20 @@ function winCheck()
         if ((winValues[i] & scores[whoseTurn]) == winValues[i])
         {
             gameOver = true;
-            document.getElementById("game-display").innerText = players[whoseTurn] + " wins!";
+            updateGameDisplay(players[whoseTurn] + " wins!");
         }
     }
 
     if (((scores[0] + scores[1]) == 511) && !gameOver)
     {
-        document.getElementById("game-display").innerText = "Cat's game";
+        updateGameDisplay("Cat's Game");
         gameOver = true;
     }
+}
+
+function updateGameDisplay(text)
+{
+    document.getElementById("game-display").innerText = text;
 }
 
 // RESET
