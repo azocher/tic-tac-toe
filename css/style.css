@@ -1,3 +1,46 @@
-h1 {
-  color: purple;
+* {margin: 0; padding: 0;  user-select: none;}
+
+body {
+  background-image: url(../stone.jpg);
+  
 }
+
+
+h1, h2 {
+  color: pink;
+  font-size: 50px;
+  font-family:'Indie Flower', cursive;
+  margin-left: 750px;
+  margin-bottom: 20px;
+}
+
+div#board {
+
+ display: grid;
+ justify-content: center;
+ align-content: center;
+ 
+}
+div[id^="row-"] {clear: both;}
+div[id^="row-"] div
+{
+  border: 5px solid yellow;
+  height: 200px;
+  width: 200px;
+  float: left;
+  text-align: center;
+  font-family:'Indie Flower', cursive;
+  font-size: 175px;
+  color: blue;
+  
+  
+}
+
+div#row-1 div{
+  border-top: none;
+}
+div#row-3 div{
+  border-bottom: none;
+}
+div[id^="row-"] div:first-child{border-left: none;}
+div[id^="row-"] div:last-child{border-right: none;}
