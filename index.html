@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&family=Schoolbell&display=swap" rel="stylesheet">
     <script src="js/ttt.js"></script>
     <title>Tic Tac Toe</title>
 </head>
@@ -12,8 +13,8 @@
 
     <main class='gameSpace'>
         <form onreset="reset()">
-            <div id="playerTurn">
-                <p>Player One Start</p>
+            <div>
+                <p id="playerTurn">Player One Start</p>
             </div>
             <div id="gameBoard">
                 <div class="gameRow">
@@ -27,14 +28,14 @@
                     <div class='middleRow box' id='middleRight'>me</div>
                 </div>
                 <div class="gameRow">
-                    <div class='lowerRow box' id='lowerLeft'>or</div>
-                    <div class='lowerRow box' id='lowerCenter'>choose</div>
-                    <div class='lowerRow box' id='lowerRight'>death</div>
+                    <div class='lowerRow box' id='lowerLeft'>forever</div>
+                    <div class='lowerRow box' id='lowerCenter'>and</div>
+                    <div class='lowerRow box' id='lowerRight'>ever</div>
                 </div>
             </div>
             <button id="reset">Reset Game</button>
             <div id='results'>
-                Who will win?
+                <p id="resultsText">Who will win and who will die?</p>
             </div>
          </form>
     </main>

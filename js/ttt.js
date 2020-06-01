@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 /*--Dom Refs--*/
-let gameBoard = document.getElementById('gameBoard')
-let resetBtn = document.getElementById('reset')
-let resultDiv = document.getElementById('results')
-let boxDiv = document.getElementsByClassName('box')
-let playerTurnDiv = document.getElementById('playerTurn')
+let gameBoard = document.getElementById('gameBoard');
+let resetBtn = document.getElementById('reset');
+let resultDiv = document.getElementById('resultsText');
+let playerTurnDiv = document.getElementById('playerTurn');
 /*--Game Logic--*/
 let gameOver = false;
 let player = 0;
@@ -44,8 +43,7 @@ function reset() {
     for (let box in boxesToMark) {
         boxesToMark[box] = null;
     }
-    resultDiv.innerText = ('');
-    boxDiv.innerText = ('');
+    
     init();
 }
 
