@@ -1,8 +1,10 @@
+
 /* ------------------ DOM REFS ---------------- */
 let gameBoard = document.getElementById("gameBoard");
 let resetBtn = document.getElementById("reset");
 let showTurn = document.getElementById("displayTurn")
 let displayResults = document.getElementById("displayResults")
+//let loadAudio = document.getElementById("audio")
 
 /* ----------------- GAME Logic Variables --------------- */
 let turnNum = 0;
@@ -24,9 +26,13 @@ let winCombo = [
 /* ------------------ Event Listeners ----------------- */
 gameBoard.addEventListener("click", boxClick);
 resetBtn.addEventListener("click", reset);
-
+//loadAudio.addEventListener("load", playSound);
 
 /* ---------------- FUNCTIONS MAH DUDE ------------------- */
+
+// window.onload = function() {
+//     document.getElementById("audio").play();
+// }
 
 function boxClick(e) {
     //console.log(e.target)
@@ -37,7 +43,7 @@ function boxClick(e) {
     } else {
         if (turnNum % 2 !== 0) {
             boxSpot.classList.add("turnX");
-            showTurn.innerText = "O is going next"
+            showTurn.innerText = "Morty play your turn already..."
             let choice = boxSpot.id;
             if (playerX.indexOf(choice) < 0) {
                 playerX.push(choice)
@@ -46,7 +52,7 @@ function boxClick(e) {
         }; 
         if (turnNum % 2 == 0) {
             boxSpot.classList.add("turnO");
-            showTurn.innerText = "X is going next"
+            showTurn.innerText = "Ah geez Rick, you're up."
             let choice = boxSpot.id;
             if (playerO.indexOf(choice) < 0) {
                 playerO.push(choice)
@@ -55,7 +61,7 @@ function boxClick(e) {
         };
         turnNum++
         if (turnNum === 9) {
-            showTurn.innerText = "Cat's game"
+            showTurn.innerText = "Cat's game dawg!"
         }
         endGame();
     }  
@@ -78,12 +84,12 @@ for (let i = 0; i < winCombo.length; i++) {
         } 
         if (playerX.includes(winCombo[i][j]) && matchComboX === 3) {
             //alert("we have a winner")
-            showTurn.innerText = "Congrats X wins"
+            showTurn.innerText = "Rick wins (of course)"
             stopPlay();
         }
         if (playerO.includes(winCombo[i][j]) && matchComboO === 3) {
             //alert("O wins")
-            showTurn.innerText = "Congrats O wins"
+            showTurn.innerText = "Really, well, Morty wins, I guess"
             stopPlay();
         }
     }
@@ -158,7 +164,4 @@ function reset(e) {
 
     gameBoard.addEventListener("click", boxClick);
 
-}
-
-
-
+};

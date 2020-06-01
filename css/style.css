@@ -1,12 +1,25 @@
-body {
+body, html {
   text-align: center;
   margin: 0 auto;
   color: black;
 }
 
+body {
+  background-image: url("../img/AllKnowingHead.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  color: white;
+  padding: 10px;
+}
+
 #displayTurn {
   font-size: 24px;
   margin: 10px;
+  color: white;
 }
 
 .container {
@@ -25,11 +38,11 @@ body {
 } 
 
 .turnX {
-  background-image: url("../img/X.png");
+  background-image: url("../img/droolingRick.jpg");
   background-size: cover;
 }
 
 .turnO {
-  background-image: url("../img/O-Icon.png");
+  background-image: url("../img/Morty.jpg");
   background-size: cover;
 }
