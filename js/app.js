@@ -1,112 +1,19 @@
-////////////////////////////////////////////////////
-//-----------  Computer Player solution  ---------//
-////////////////////////////////////////////////////
+// Reference: 
+// - https://www.youtube.com/watch?v=TD5EaIkhSTQ&t=1137s
+// - https://codepen.io/vedbhawsar/pen/NWGgXPB
+// - https://medium.com/automationschool/create-a-basic-tic-tac-toe-in-7-steps-for-absolute-beginners-to-html-css-javascript-jquery-55c3277dd68a
 
-const  game = new Game();
-game.start();
-
-function Game() {
-    const board = new Board();
-    const player = new Player(board);
-    const complay = new Complay(board);
-    let turn = 0;
-
-    this.start = function() {
-        const config = {childList: true };
-        const observer = new MutationObserver(() => takeTurn());
-        board.positions.forEach((el) => observer.observe(el, config));
-        takeTurn();
-    }
-
-    function takeTurn() {
-        if (board.checkForWinner()) {
-            return;
-        }
-        turn % 2 === 0 ? player.takeTurn() : complay.takeTurn() ;
-        turn ++;
-    }
-}
-
-function Board() {
-    this.positions = Array.from(document.querySelectorAll('.cell'));   
-    
-    this.checkForWinner = function() {
-        let winner = false;
-        const winIndices = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ];
-        const positions = this.positions;
-        winIndices.forEach((winCombo) => {
-            const pos0InText = positions[winCombo[0]].innerText;
-            const pos1InText = positions[winCombo[1]].innerText;
-            const pos2InText = positions[winCombo[2]].innerText;
-            const isWinCombo = pos0InText !== '' && 
-                  pos0InText === pos1InText && 
-                  pos1InText === pos2InText;
-            if (isWinCombo) {
-                winner = true;
-                winCombo.forEach((index) => {
-                    positions[index].className += ' winner';
-                })
-            }
-
-        });
-        return winner;
-    }
-}
-
-function Player(board) {
-    this.takeTurn = function() {
-        board.positions.forEach(el => el.addEventListener('click', handleTurnTaken));
-    }
-
-    function handleTurnTaken(e) {
-        e.target.innerText = 'X';
-        board.positions.forEach(el => el.removeEventListener('click', handleTurnTaken));
-    }
-}
-
-function Complay(board) {
-    this.takeTurn = function() {
-        const avaiPositions = board.positions.filter((p) => {
-            return p.innerText === '';
-        } );
-        const move = Math.floor(Math.random() * avaiPositions.length) ;
-        avaiPositions[move].innerText = 'O';
-    }
-}
-
-function restartGame() {
-    document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
-}
-document.querySelector('.reset').addEventListener('click', restartGame);
+/***** Thank you Yoshi for helping me implement code work perfectly *****/
 
 
-
-
-////////////////////////////////////////////////////
-//------------ Hunan Player solution -------------//
-////////////////////////////////////////////////////
-
-/*
-
+let gameState = ["", "", "", "", "", "", "", "", ""];
 let gameActive = true;
 let currentPlayer = "X";
-let gameState = ["", "", "", "", "", "", "", "", ""];
 
-const winMessage = () => `Player ${currentPlayer} won!`;
-const drawMessage = () => `Game draw!`;
-const playerTurn = () => `It's ${currentPlayer}'s turn`;
+const winMessage = () => `${currentPlayer} Win!`;
+const drawMessage = () => `Game Tie!`;
+const playerTurn = () => `${currentPlayer}'s turn`;
 const gameStatus = document.querySelector('.result');
-gameStatus.innerHTML = playerTurn();
-
 const winIndices = [
     [0, 1, 2],
     [3, 4, 5],
@@ -118,15 +25,16 @@ const winIndices = [
     [2, 4, 6]
 ];
 
+document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', cellClick));
+document.querySelector('.reset').addEventListener('click', restartGame);
+gameStatus.innerHTML = playerTurn();
 
 function cellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
-    const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
-
+    const clickedCellIndex = parseInt(clickedCell.getAttribute('index'));
     if (gameState[clickedCellIndex] !== "" || !gameActive) {
         return;
     }
-
     cellPlayed(clickedCell, clickedCellIndex);
     validation();
 }
@@ -137,12 +45,13 @@ function cellPlayed(clickedCell, clickedCellIndex) {
 }
 
 function takeTurn() {
-    currentPlayer === "X" ? "O" : "X";
+    console.log("changingPlayer", currentPlayer);
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
     gameStatus.innerHTML = playerTurn();
 }
 
 function validation() {
-    let roundWon = false;
+    let checkWin = false;
     for (let i = 0; i <= 7; i++) {
         const winCondition = winIndices[i];
         let a = gameState[winCondition[0]];
@@ -152,19 +61,19 @@ function validation() {
             continue;
         }
         if (a === b && b === c) {
-            roundWon = true;
+            checkWin = true;
             break
         }
     }
 
-    if (roundWon) {
+    if (checkWin) {
         gameStatus.innerHTML = winMessage();
         gameActive = false;
         return;
     }
 
-    let roundDraw = !gameState.includes("");
-    if (roundDraw) {
+    let checkTie = !gameState.includes("");
+    if (checkTie) {
         gameStatus.innerHTML = drawMessage();
         gameActive = false;
         return;
@@ -172,7 +81,6 @@ function validation() {
 
     takeTurn();
 }
-
 
 function restartGame() {
     gameActive = true;
@@ -182,13 +90,6 @@ function restartGame() {
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
 }
 
-document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', cellClick));
-document.querySelector('.reset').addEventListener('click', restartGame);
 
-*/
-
-////////////////////////////////////////////////////
-//---------------   GA solution    ---------------//
-////////////////////////////////////////////////////
 
 
