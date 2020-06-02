@@ -14,6 +14,7 @@ const winMessage = () => `${currentPlayer} Win!`;
 const drawMessage = () => `Game Tie!`;
 const playerTurn = () => `${currentPlayer}'s turn`;
 const gameStatus = document.querySelector('.result');
+//  winning condition 
 const winIndices = [
     [0, 1, 2],
     [3, 4, 5],
@@ -29,6 +30,7 @@ document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click'
 document.querySelector('.reset').addEventListener('click', restartGame);
 gameStatus.innerHTML = playerTurn();
 
+//  Start the game
 function cellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
     const clickedCellIndex = parseInt(clickedCell.getAttribute('index'));
@@ -39,17 +41,20 @@ function cellClick(clickedCellEvent) {
     validation();
 }
 
+//  player play game
 function cellPlayed(clickedCell, clickedCellIndex) {
     gameState[clickedCellIndex] = currentPlayer;
     clickedCell.innerHTML = currentPlayer;
 }
 
+//  Player take the turn
 function takeTurn() {
     console.log("changingPlayer", currentPlayer);
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     gameStatus.innerHTML = playerTurn();
 }
 
+// check winning player
 function validation() {
     let checkWin = false;
     for (let i = 0; i <= 7; i++) {
@@ -82,6 +87,7 @@ function validation() {
     takeTurn();
 }
 
+// Restart game 
 function restartGame() {
     gameActive = true;
     currentPlayer = "X";
