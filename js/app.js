@@ -3,28 +3,32 @@ var players = [];
 players[0] = prompt("Enter Player 1");
 players[1] = prompt("Enter Player 2");
 
-let gameover = 0
+let gameOver = 0
 var whoseTurn = 0;
-let xplayer= [];
-let oplayer = [];
+let xPlayer = [];
+let oPlayer = [];
 
 function playGame(clickedDiv)
 {
-    if (gameover == 0){
+    if (gameOver == 0){
     clickedDiv.innerText = markers[whoseTurn];
     if(whoseTurn) whoseTurn =0;
      else whoseTurn = 1;
     clickedDiv.onclick = "";
     document.getElementById("message").innerText = "It's " + players[whoseTurn] +"'s turn!";
-    evaluateXCombinations();
-    evaluateOCombinations();
+   
+    if(whoseTurn === 0){
+        evaluateXCombinations(clickedDiv);
+    }else{
+        evaluateOCombinations(clickedDiv);
+    }
     }
 }
 
 
 
 
-// THIS IS WHERE I LOST IT
+// PETE IS A SAINT
 
 
 const winCombo = [
@@ -46,40 +50,45 @@ const winCombo = [
 
 
 
-function evaluateXCombinations() {
+function evaluateXCombinations(clickedDiv) {
+    xPlayer.push(clickedDiv.id)
+    
     for (let i = 0; i < winCombo.length; i++) {
         let winningCombo = winCombo[i];
-        let match = 0;
-        xplayer.push(e.target.id)
+        let match = 0;     
         for (let j = 0; j < winningCombo.length; j++) {
-            if (xPlayer.includes(winningCombo[i][j])) {
-                match++;
-            } if (match === 3) {
-                document.getElementById("gameMessage").innerText = "player x wins!"
-                gameover = 1;
-                
-            }
-        }
-    }
-    if (xPlayer.length >= 4 && oPlayer.length >= 4) {
-        gameDraw();
-    }
-}
-
-function evaluateOCombinations() {
-    for (let i = 0; i < winCombo.length; i++) {
-        let winningCombo = winCombo[i];
-        let match = 0;
-        oplayer.push(e.target.id)
-        for (let j = 0; j < winningCombo.length; j++) {
-            if (oPlayer.includes(winningCombo[i][j])) {
+            if (xPlayer.includes(winningCombo[j])) {
                 match++;
             } if (match === 3) {
                 document.getElementById("gameMessage").innerText = "player o wins!"
-                gameover = 1;
+                gameOver = 1;
                 
             }
         }
+    }
+    
+}
+
+// checking for x win
+// checking for game draw after x
+
+function evaluateOCombinations(clickedDiv) {
+    oPlayer.push(clickedDiv.id)
+    for (let i = 0; i < winCombo.length; i++) {
+        let winningCombo = winCombo[i];
+        let match = 0;      
+        for (let j = 0; j < winningCombo.length; j++) {
+            if (oPlayer.includes(winningCombo[j])) {
+                match++;
+            } if (match === 3) {
+                document.getElementById("gameMessage").innerText = "player x wins!"
+                gameOver = 1;
+                
+            }
+        }
+    }
+    if (oPlayer.length === 5 && gameOver === 0) {
+        gameDraw();
     }
 }
 
