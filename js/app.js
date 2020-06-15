@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
-    /*-----------> DOM REFS <-------------------*/ 
-    let everyMove = document.querySelectorAll('.moveSpace');
-    let gameSpace = document.querySelector('.gameFace');
-    let restartBtn = document.querySelector('#restart');
+
+/*-----------> DOM REFS <-------------------*/ 
+    let everyBox = document.getElementsByClassName('moveSpace');
+
+    let restartBtn = document.getElementById('restart');
 
     
     let topLeft = document.getElementById("0");
@@ -16,56 +16,151 @@ document.addEventListener('DOMContentLoaded', function() {
     let bottomRight = document.getElementById("8");
 
     /*-----------> Game Logic Variables <-----------*/ 
-    let userTurn = true;
     
-    const playerMove = "X";
-    const compMove = "O"
-    let winConditions = [[0,1,2], 
-    [3,4,5], 
-    [6,7,8], 
-    [0,4,8], 
-    [6,4,2], 
-    [0,3,6],
-    [1,4,7]
-    [2,5,8]];
+    const playerTurn = "X";
+    const compTurn = "O";
+    let activePlayer = playerTurn;
+    let playerMoves = [];
+    let compMoves = [];
+    let winConditions = [['0','1','2'], 
+    ['3','4','5'], 
+    ['6','7','8'], 
+    ['0','4','8'], 
+    ['6','4','2'], 
+    ['0','3','6'],
+    ['1','4','7'],
+    ['2','5','8']];
     let turn = 0;
-    let 
+    var isGameOver = false;
+    
 
     // let gameState = ["", "", "", "", "", "", "", "", ""]
 
     /*-----------> Event Listener <-----------*/ 
-    gameSpace.addEventListener('click', click);
+    // restartBtn.addEventListener('click', resetGame);
     
 
+    function switchTurns() {
+        if (turn % 2 === 0) {
+            activePlayer = playerTurn;
+        } else {
+            activePlayer = compTurn;
+        }
+        turn++;
 
-    // function init() {
-    //     clickedBox.innerText = playerMove;
-    
-        // for (var i = 0; i < everyMove.length; i++) {
-        //     everyMove[i].innerText = '';
-        //     everyMove[i].addEventListener('click', click)
-        // }
-    // }
-    
-    //function to register click
-    function click(e) {
-        let clickedDiv = e.target.id;
-        console.log("you clicked " + clickedDiv);
+    }
         
-        playerTurn();
+    function updateBoxContent(targetBox) {
+        //allows for activePlayer to 
+        targetBox.innerHTML = activePlayer;
+    }
 
-        clickedDiv.innerText = "X"
+    function trackPlayerMoves (targetBox) {
+       if (activePlayer === playerTurn) {
+           playerMoves.push(targetBox.id)
+       } else {
+           compMoves.push(targetBox.id)
+       }
+    //    console.log(playerMoves);
+    //    console.log(compMoves);
+    }
+
+    function gameOver (message) {
+        for (var i = 0; i < everyBox.length; i++) {
+            everyBox[i].removeEventListener('click', clickCheck);
+        }
+        document.getElementById('gameResult').innerHTML = message
+        
+        isGameOver = true;
+    }
+    
+    function checkWin () {
+        //this funciton increments points based on match of moves vs winCondi
+        //double loop through the winConditions and check IF 
+        // the 
+        // this loop is looking at a row, checking the first win row
+        for (var i = 0; i < winConditions.length; i++) {
+            let playerPoints = 0;
+            let compPoints = 0;
+            //this loop looks over each individual box
+            console.log(winConditions[i]);
+            for (var j = 0; j < winConditions[i].length; j++) {
+                if(playerMoves.includes(winConditions[i][j])) {
+                    playerPoints++
+                } 
+                if(compMoves.includes(winConditions[i][j])){
+                    compPoints++
+                }
+            }
+            //we need to reset score and end game if points hit 3
+            if(playerPoints === 3 || compPoints === 3) {
+                console.log("Game Over! " + activePlayer + " wins!");
+                gameOver("Game Over! " + activePlayer + " wins!");
+                return 
+            }
+       
+        }
         
     }
 
-    function playerTurn() {
-        turn++;
-        if (turn % 2 === 0) {
-            activePlayer = playerMove;
-        } else {
-            activePlayer = compMove;
+    function checkDraw() {
+        if (turn === 9 && !isGameOver) {
+            gameOver("Game is a draw");
         }
     }
 
-    
-})
+    function clickCheck (e) {
+        console.log(e);
+        console.log('Hey I just clicked ' + e.target);
+        
+        // Whose turn it is
+        switchTurns();
+
+        //UPdate the box with a picture/text for move
+        updateBoxContent(e.target)
+        
+        //track the player moves
+        trackPlayerMoves(e.target)
+
+        // check if our win condition is met
+        checkWin()
+
+        // draw check
+        checkDraw();
+
+    }
+
+    function init () { 
+        for (var i = 0; i < everyBox.length; i++) {
+            everyBox[i].addEventListener('click', clickCheck);
+        }
+    }
+    init();
+
+
+    function removeBoxContent () {
+        for (var i = 0; i < everyBox.length; i++) {
+            everyBox[i].innerHTML = ""
+        }
+        document.getElementById('gameResult').innerHTML = "";
+
+    }
+
+    function resetGame () {
+         //reset
+        turn = 0;
+        activePlayer = playerTurn;
+        playerMoves = [];
+        compMoves = [];
+        isGameOver = false;
+
+        // add event listeners back and remove x and o's from board
+        init();
+        removeBoxContent();
+    }
+
+    restartBtn.addEventListener('click', resetGame)
+
+    // ----------> stretch goal:
+    // How to make a draw check to make a draw before the last turn
+    // Automation 
