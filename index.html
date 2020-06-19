@@ -3,12 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Front-End</title>
+  <title>Tic-Tac-Toe</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-  <h1>Hello Front-End</h1>
-
+  <header id="intro">
+    <h1>Welcome to Tic-Tac-Toe</h1>
+    <p>Pick a box, any box, match 3 in a row and walk away with nothing!</p>
+  </header>
+  <div>
+    <h2 id="gameResult"></h2>
+  </div>
+  <main class="gameFace">
+    <div id = "0" class="moveSpace"></div>
+    <div id = "1" class="moveSpace"></div>
+    <div id = "2" class="moveSpace"></div>  
+    <div id = "3" class="moveSpace"></div>
+    <div id = "4" class="moveSpace"></div>
+    <div id = "5" class="moveSpace"></div>  
+    <div id = "6" class="moveSpace"></div>
+    <div id = "7" class="moveSpace"></div>
+    <div id = "8" class="moveSpace"></div>  
+  </main>
+  <footer>
+    <div class ='result'></div>
+    <div class ='buttons'>
+      <button id="start">Start Game</button>
+      <button id="restart">Reset Game</button>
+    </div>
+    
   <script type="text/javascript" src="js/app.js"></script>
+  </footer>
 </body>
 </html>
