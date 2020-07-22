@@ -60,7 +60,7 @@ function hasWon(symbol){
   } 
   result.querySelector('.x').innerText = `X has won ${xWins} times`;
   result.querySelector('.o').innerText = `O has won ${oWins} times`;//scoreboard increments in two different lines
-   
+  //block_1.removeEventListener('click', clickblock(block_1)) // alternative
   block_1.removeEventListener('click', clickblock_1);//to be able to use the classes again
   block_2.removeEventListener('click', clickblock_2);
   block_3.removeEventListener('click', clickblock_3);
@@ -74,7 +74,20 @@ function hasWon(symbol){
 }
 
 
-
+//   function clickblock(block){
+//   if(playerTurn % 2 == 0){
+//     block.setAttribute('class', 'playero');
+  
+//   }else{
+//     block.setAttribute('class', 'playerx');
+//   }
+//     playerTurn++;
+//     let result= whosWinner()
+//     if (result ){
+//       hasWon(result)
+//    }
+//  block.removeEventListener("click", clickblock);
+//}
 function clickblock_1(){ 
   if (playerTurn % 2 == 0){
   block_1.setAttribute('class', "playero");

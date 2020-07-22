@@ -32,6 +32,7 @@ margin: 10px;
 .playerx {
   background-image: url('x.png');
   background-size: contain;
+  background-repeat: no-repeat;
   height:125px;
   width: 125px;
   border: solid 5px black;
@@ -41,6 +42,7 @@ margin: 10px;
 .playero {
   background-image: url('circle.jpeg');
   background-size: contain;
+  background-repeat: no-repeat;
   height:125px;
   width: 125px;
   border: solid 5px black;
@@ -102,3 +104,11 @@ margin: 10px;
   font-size: 20px;
   
 }
+@media (max-width:800px){
+  body{
+    
+    width: px;
+  }
+
+}
+
