@@ -1,49 +1,95 @@
-![General Assembly Logo](http://i.imgur.com/ke8USTq.png)
+
 
 # Tic Tac Toe
 
 ## Objectives
 
 * Build a tic tac toe game in HTML, CSS, and vanilla JavaScript
-* Use best practices when writing code
 
-This week we have been learning about HTML/CSS, Javascript and DOM manipulations, and writing functions.
+### Technologies
+- HTML
+- CSS
+- Javascript
 
-We will be making a Tic Tac Toe game using all of these concepts.
+### Code snippets I am happy with
+ 
+ I was really happy with his css stylings, because I was able to creat a class in JS to call these CSS selectors as well as store the x and o images and put a border around the image. The border prevented the white background from encroaching the grid border lines.
+```css
+  .playerx {
+  background-image: url('x.png');
+  background-size: contain;
+  height:125px;
+  width: 125px;
+  border: solid 5px black;
 
-## Getting Started
+}
 
-* Fork and clone this repository.
-* Before you even start working with JavaScript, construct the gameboard. The gameboard page should include the 3x3 grid (of divs). Using `id` and `class` on clickable elements will help you wire this up in JavaScript afterwards.
-* The JavaScript portion will be next
-  * Select elements and attach functions via event listeners
-  * You will also need a variable to keep track of moves. This will be used to indicate whether or not to draw an `X` or an `O`
+.playero {
+  background-image: url('circle.jpeg');
+  background-size: contain;
+  height:125px;
+  width: 125px;
+  border: solid 5px black;
+```
 
-## Requirements
-* A user should be able to click on different squares to make a move.
-* Every click will alternate between marking an `X` and `O`
-* Upon marking of an individual cell, use JavaScript to add a class to each cell to display the separate players.
-* Display a message to indicate which turn is about to be played.
-* Detect draw conditions (ties/cat's game) 
-* Detect winner: Stop game and declare the winner if one player ends up getting three in a row. 
-  * Hint: Determine a set of winning combinations. Check those combinations on the board contents after every move.
+This particular code was to control the player turns and help the Dom decide which player symbol(I used images for x and o) to place in box. if player turn mod 2 == 0 then call on the CSS class for playero above, Else I called on the playerx class. Both classes were already styled and sized.
 
-**Have Fun** - The best way to learn is by playing with code. Let creativity guide you and try some experiments with JS and CSS and see what you can do.
+  ``` javascript
+  function clickblock_1(){ 
+  if (playerTurn % 2 == 0){
+  block_1.setAttribute('class', "playero");
 
-## Bonuses
+  }
+  else{block_1.setAttribute('class', "playerx");}
+  playerTurn++;
+  block_1.removeEventListener("click", clickblock_1);
+  
+}
 
-* Implement your reset button without refreshing the whole page
-* Track player's wins over time
-* Add a simple AI to support one player vs computer mode. In this case, "simple" just means having the computer pick a random empty square.
-* Make your computer seem more human by adding a short time delay between your turn and the computer's turn.
-* Style it up! Get creative, or even make a theme!
 
-## Super Duper Bonus
+```
+### Code Snippets that I felt very challenged with
 
-* Add an AI that can beat you every time with the mini-max algorithm.
+The code block below shows my attempt to select a win condition Function. I was only successful at making it say "win" every time I clicked an individual block.
+``` javascript
 
----
+    function whosWinner(){
+let one =document.querySelector('#block_1').className;
+let two =document.querySelector('#block_2').className;
+let three =document.querySelector('#block_3').className;
+let four =document.querySelector('#block_4').className;
+let five =document.querySelector('#block_5').className;
+let six =document.querySelector('#block_6').className;
+let seven =document.querySelector('#block_7').className;
+let eight =document.querySelector('#block_8').className;
+let nine =document.querySelector('#block_9').className;
 
-## Licensing
-1. All content is licensed under a CC-BY-NC-SA 4.0 license.
-2. All software code is licensed under GNU GPLv3. For commercial use or alternative licensing, please contact legal@ga.co.
+
+ if (one === two && one === three){
+     whosWinner(one);
+  }
+  else if (four === five && four === six){
+     whosWinner(four);
+  }
+  else if (seven === eight && four === nine){
+    whosWinner(seven);
+  }
+  else if (one === five && one === nine){
+     whosWinner(one);
+  }
+  else if (three === five && three === seven){
+     whosWinner(two);
+  }
+  else if (one === four && one=== seven);{
+     whosWinner(three);
+  }
+   if (two === five && two === eight){
+     whosWinner(one);
+   }
+   if (three === six && three=== nine);{
+     whosWinner(three)
+   }
+
+  }
+```
+   
