@@ -1,5 +1,8 @@
 let playerOne = "x";
 let playerTwo = "o";
+
+let oWins = 0;
+let xWins = 0;
   
 
 var block_1 = document.getElementById('block_1');
@@ -13,22 +16,30 @@ var block_8 = document.getElementById('block_8');
 var block_9 = document.getElementById('block_9');
 var reset = document.getElementById('reset');
 
-block_1.addEventListener('click', clickblock_1);
-block_2.addEventListener('click', clickblock_2);
-block_3.addEventListener('click', clickblock_3);
-block_4.addEventListener('click', clickblock_4);
-block_5.addEventListener('click', clickblock_5);
-block_6.addEventListener('click', clickblock_6);
-block_7.addEventListener('click', clickblock_7);
-block_8.addEventListener('click', clickblock_8);
-block_9.addEventListener('click', clickblock_9);
+function setup(){
+  block_1.addEventListener('click', clickblock_1); //the setup fuction so we dont have to reuse these lines of code
+  block_2.addEventListener('click', clickblock_2);
+  block_3.addEventListener('click', clickblock_3);
+  block_4.addEventListener('click', clickblock_4);
+  block_5.addEventListener('click', clickblock_5);
+  block_6.addEventListener('click', clickblock_6);
+  block_7.addEventListener('click', clickblock_7);
+  block_8.addEventListener('click', clickblock_8);
+  block_9.addEventListener('click', clickblock_9);
+}
+setup()
+
 reset.addEventListener('click', clickReset);
 const result = document.querySelector(".score-board")
 let playerTurn = 1//fist players turn
 function clickReset() {
-  location.reload()//reset page
+ let allBlocks = document.querySelectorAll('.row div ')//reset page
+    for(i = 0; i< allBlocks.length; i++){//choose all item
+      allBlocks[i].className = ''
 
 
+    }
+   setup()//called the setup function again instead of having to type all the lines of code
 
 
 
@@ -39,13 +50,29 @@ function clickReset() {
 
 function hasWon(symbol){
   if(symbol ==="playerx"){
-    result.innerText = playerOne + "has won"
+    xWins++//add to the scoreboard for x
+  //  result.innerText = `${playerOne} has won` //turned lines 54,56 into the function with back ticks on 61
   } else {
-    result.innerText = playerTwo + "has won"
+   // result.innerText = `${playerTwo} has won`
+    oWins++//add to the scoreboard for o
+    
 
-  } result.className = 'score-board show' 
-console.log(symbol);
+  } 
+  result.querySelector('.x').innerText = `X has won ${xWins} times`;
+  result.querySelector('.o').innerText = `O has won ${oWins} times`;//scoreboard increments in two different lines
+   
+  block_1.removeEventListener('click', clickblock_1);//to be able to use the classes again
+  block_2.removeEventListener('click', clickblock_2);
+  block_3.removeEventListener('click', clickblock_3);
+  block_4.removeEventListener('click', clickblock_4);
+  block_5.removeEventListener('click', clickblock_5);
+  block_6.removeEventListener('click', clickblock_6);
+  block_7.removeEventListener('click', clickblock_7);
+  block_8.removeEventListener('click', clickblock_8);
+  block_9.removeEventListener('click', clickblock_9);
+  result.className = 'score-board show' 
 }
+
 
 
 function clickblock_1(){ 
@@ -176,7 +203,6 @@ function clickblock_9(){
     block_9.removeEventListener("click", clickblock_9);
   
 }
-
 
 
 
