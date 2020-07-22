@@ -26,7 +26,8 @@ reset.addEventListener('click', clickReset);
 const result = document.querySelector(".score-board")
 let playerTurn = 1//fist players turn
 function clickReset() {
-  location.reload();
+  location.reload()//reset page
+
 
 
 
@@ -36,13 +37,14 @@ function clickReset() {
   
 }
 
-function whosWinner(symbol){
-  if(symbol ==="x"){
-    result.innerHTML = playerOne + "has won"
+function hasWon(symbol){
+  if(symbol ==="playerx"){
+    result.innerText = playerOne + "has won"
   } else {
-    result.innerHTML = playerTwo + "has won"
-  }
+    result.innerText = playerTwo + "has won"
 
+  } result.className = 'score-board show' 
+console.log(symbol);
 }
 
 
@@ -53,6 +55,10 @@ function clickblock_1(){
   }
   else{block_1.setAttribute('class', "playerx");}
   playerTurn++;
+  let result = whosWinner()
+    if (result ){
+       hasWon(result)
+    }
   block_1.removeEventListener("click", clickblock_1);
   
 }
@@ -63,8 +69,12 @@ function clickblock_2(){
     }
     else{block_2.setAttribute('class', "playerx");}
     playerTurn++;
+    let result = whosWinner()
+    if (result ){
+       hasWon(result)
+    }
     block_2.removeEventListener("click", clickblock_2);
-    
+   
 
   
 }
@@ -75,6 +85,10 @@ function clickblock_3(){
     }
     else{block_3.setAttribute('class', "playerx");}
     playerTurn++;
+    let result = whosWinner()
+    if (result ){
+       hasWon(result)
+    }
     block_3.removeEventListener("click", clickblock_3);
     
 }
@@ -85,6 +99,10 @@ function clickblock_4(){
     }
     else{block_4.setAttribute('class', "playerx");}
     playerTurn++;
+    let result = whosWinner()
+    if (result ){
+       hasWon(result)
+    }
     block_4.removeEventListener("click", clickblock_4);
   
 }
@@ -95,6 +113,10 @@ function clickblock_5(){
     }
     else{block_5.setAttribute('class', "playerx");}
     playerTurn++;
+    let result = whosWinner()
+    if (result ){
+       hasWon(result)
+    }
     block_5.removeEventListener("click", clickblock_5);
     
 }
@@ -105,6 +127,10 @@ function clickblock_6(){
     }
     else{block_6.setAttribute('class', "playerx");}
     playerTurn++;
+    let result = whosWinner()
+    if (result ){
+       hasWon(result)
+    }
     block_6.removeEventListener("click", clickblock_6);
   
 }
@@ -115,6 +141,10 @@ function clickblock_7(){
     }
     else{block_7.setAttribute('class', "playerx");}
     playerTurn++;
+    let result = whosWinner()
+    if (result ){
+       hasWon(result)
+    }
     block_7.removeEventListener("click", clickblock_7);
   
 }
@@ -125,6 +155,10 @@ function clickblock_8(){
     }
     else{block_8.setAttribute('class', "playerx");}
     playerTurn++;
+    let result = whosWinner()
+    if (result ){
+       hasWon(result)
+    }
     block_8.removeEventListener("click", clickblock_8);
   
 }
@@ -135,47 +169,53 @@ function clickblock_9(){
     }
     else{block_9.setAttribute('class', "playerx");}
     playerTurn++;
+    let result = whosWinner()
+    if (result ){
+       hasWon(result)
+    }
     block_9.removeEventListener("click", clickblock_9);
   
 }
 
-let one =document.querySelector('#block_1').className;
-let two =document.querySelector('#block_2').className;
-let three =document.querySelector('#block_3').className;
-let four =document.querySelector('#block_4').className;
-let five =document.querySelector('#block_5').className;
-let six =document.querySelector('#block_6').className;
-let seven =document.querySelector('#block_7').className;
-let eight =document.querySelector('#block_8').className;
-let nine =document.querySelector('#block_9').className;
 
 
- if (one === two && one === three){
-     whosWinner(one);
+
+function whosWinner(){
+  let one =document.querySelector('#block_1').className;
+  let two =document.querySelector('#block_2').className;
+  let three =document.querySelector('#block_3').className;
+  let four =document.querySelector('#block_4').className;
+  let five =document.querySelector('#block_5').className;
+  let six =document.querySelector('#block_6').className;
+  let seven =document.querySelector('#block_7').className;
+  let eight =document.querySelector('#block_8').className;
+  let nine =document.querySelector('#block_9').className;
+  if (one === two && one === three) {
+     return one;
   }
-  else if (four === five && four === six){
-     whosWinner(four);
+  else if (four === five && four === six) {
+     return four;
   }
-  else if (seven === eight && four === nine){
-    whosWinner(seven);
+  else if (  seven === eight && four === nine) {
+       return seven;
   }
-  else if (one === five && one === nine){
-     whosWinner(one);
+  else if (  one === five && one === nine) {
+       return one;
   }
-  else if (three === five && three === seven){
-     whosWinner(two);
+  else if (  three === five && three === seven) {
+       return three;
   }
-  else if (one === four && one=== seven);{
-     whosWinner(three);
+  else if (  one === four && one=== seven) {
+       return one;
   }
-   if (two === five && two === eight){
-     whosWinner(one);
+  else if (two === five && two === eight) {
+       return two;
    }
-   if (three === six && three=== nine);{
-     whosWinner(three)
+  else if (three === six && three=== nine) {
+       return three
+     
    }
-
-
+  }
 
    
   

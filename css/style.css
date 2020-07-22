@@ -5,8 +5,7 @@ body{
 
 }
 
-
-.blocks {
+.row div {
   border: solid 5px black;
   height:125px;
   width: 125px;
@@ -87,8 +86,13 @@ margin: 10px;
   bottom:500px ;
   margin: 0;
   padding: 0;
+  tex
  
 
 
+  
+}
+.show{
+  display: flex;
   
 }
